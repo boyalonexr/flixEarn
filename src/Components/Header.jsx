@@ -6,11 +6,21 @@ import { CgProfile } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdSubscriptions, MdPlaylistAddCheck, MdAttachMoney } from "react-icons/md";
 import { BiMessageAltDetail } from "react-icons/bi";
-
+import flix from '../assets/currencies/flixcoin.svg'
+import usdt from '../assets/currencies/usdt.svg'
+import btc from '../assets/currencies/btc.svg'
+import doge from '../assets/currencies/doge.svg'
 
 
 function Header() {
   const [activePopup, setActivePopup] = useState(null)
+
+  const notification = [
+    {icon: flix, msg: "Received 38 FXC", time: "3 hours ago" },
+    {icon: btc, msg: "Received 0.00056 BTC", time: "5 hours ago" },
+    {icon: usdt, msg: "Withdrawn 250 USDT", time: "6 hours ago" },
+    {icon: doge, msg: "Received 17 DOGE", time: "9 hours ago" },
+  ]
 
   const userData = [
     { label: 'Profile', icon: <CgProfile /> },
@@ -35,29 +45,71 @@ function Header() {
         </div>
 
         <div className="text-black text-2xl flex gap-2">
-          <div>
-            <button className="bg-green-500 p-2 rounded-full">
+          <div className="relative">
+             
+            <button 
+            onClick={() => toogleActive("wallet")}
+            className="bg-green-500 p-2 rounded-full">
               <LuWallet />
             </button>
             
           </div>
 
-          <div>
-            <button className="bg-[#b9cbe3] relative p-2 rounded-full text-black hover:bg-red-500 hover:text-white">
+          <div className="relative">
+            <button 
+            onClick={() => toogleActive("notify")}
+            className={`relative p-2 rounded-full 
+                        hover:bg-red-500 hover:text-white 
+                        transition-colors duration-500
+                        ${activePopup === 'notify' 
+                          ? 'bg-red-500 text-white' 
+                          : 'bg-[#b9cbe3]'}`}>
               <IoMdNotificationsOutline />
             
-              <span className="absolute -top-1 -right-1 w-5 h-5  bg-red-500 text-white text-xs flex justify-center items-center rounded-full">4</span>
+              <span className="absolute -top-1 -right-1 w-5 h-5  bg-red-500 text-white text-xs flex justify-center items-center rounded-full">{notification.length}</span>
             </button>
+
+            {activePopup === 'notify' && <div className="absolute right-0 bg-[#141414] text-[#dfdede] w-60 text-sm rounded-xl border border-gray-800 p-4 pt-6">
+              <div 
+              onClick={()=> toogleActive(false)}
+              className="fixed inset-0"/>
+
+              {notification.map((data, index)=> (
+                <>
+                  <div 
+                  key={index}
+                  className="flex gap-2">
+                    <img className="w-[15px]" src={data.icon} alt="" />
+                    <h2 className="font-medium">{data.msg}</h2>
+                  </div>
+                  <p className="text-zinc-400 text-[12px] pb-3">{data.time}</p>
+                </>
+              ))}
+
+              <div 
+              onClick={()=> toogleActive(false)}
+              className="text-center font-medium uppercase border-t pt-2 transition-colors duration-500 hover:text-red-500">Clear All</div>
+            </div>}
           </div>
 
           <div className="relative">
-            <button 
-            onClick={()=> toogleActive("user")}
-            className="bg-[#b9cbe3] p-2 rounded-full hover:bg-red-500 hover:text-white">
-              <FiUser />
-            </button>
+           <button 
+            onClick={() => toogleActive("user")}
+            className={`p-2 rounded-full 
+                        hover:bg-red-500 hover:text-white 
+                        transition-colors duration-500
+                        ${activePopup === 'user' 
+                          ? 'bg-red-500 text-white' 
+                          : 'bg-[#b9cbe3]'}`}>
+            <FiUser />
+          </button>
+
 
            {activePopup === 'user' && <div className="absolute -right-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-4 pt-6">
+              <div 
+              onClick={()=> toogleActive(false)}
+              className="fixed inset-0"/>
+
               <ul>
                 {userData.map((data, index) => (
                   <li
