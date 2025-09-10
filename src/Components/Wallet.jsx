@@ -20,11 +20,15 @@ const cryptoOptions = [
 function Wallet({ toogleActive }) {
   const [activeWallet, setActiveWallet] = useState("deposit");
   const [selected, setSelected] = useState(cryptoOptions[0])
-  const [ open, setOpen ] = useState()
+  const [ open, setOpen ] = useState(null)
 
   const setActiveWalletType = (type) => {
     setActiveWallet(type);
   };
+
+  const toogleOpen = (type) => {
+    setOpen(prev => ( prev === type ? null : type ))
+  }
 
 
   return (
@@ -39,7 +43,7 @@ function Wallet({ toogleActive }) {
         exit={{ opacity: 0, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
         viewport={{ once: true }}
-        className="fixed top-1/4 left-2 -translate-x-1/2 -translate-y-1/2 bg-[#141414] z-20 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] max-w-lg">
+        className="fixed top-1/4 left-0 right-0 bg-[#141414] z-20 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-lg">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl">Wallet</h1>
           <button onClick={() => toogleActive(false)} className="text-2xl text-gray-500">
@@ -85,12 +89,34 @@ function Wallet({ toogleActive }) {
             <div className="transition-all duration-300 animate-fade-in">
               <p>Currency <span className="text-red-500">*</span></p>
 
-              <button>
-                <span>
-
+              <button 
+                onClick={()=> toogleOpen('currency')}
+                className={
+                  `flex item transition-all duration-500 justify-between w-full bg-[#1e1f21] px-4 py-1 mt-3 text-white rounded-full 
+                  ${ open === 'currency' ? 'border-red-500 border' : ''}`}>
+                <span className="flex items-center gap-2">
+                  <img className="w-1/3" src={selected.icon} alt="" />
+                  <p>{selected.name}</p>
                 </span>
 
+                <span className={`p-2 ${open === 'currency' ? 'text-red-500' : 'text-gray-400'}`}>
+                  &#9662;
+                </span>
               </button>
+
+              {open && 
+              <div className="absolute max-h-40 w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-lg mt-0.5 text-white px-4 pr-4 custom-scrollbar">
+                  { cryptoOptions.map(( crypto, index) =>(<button 
+                    onClick={()=> {
+                      setSelected(crypto)
+                      setOpen(false)
+                    }}
+                    key={index}
+                    className="flex py-2 items-center gap-2">
+                      <img className="w-1/3" src={crypto.icon} alt="" />
+                      <p>{crypto.name}</p>
+                  </button>))}
+              </div>}
             </div>
           )}
 

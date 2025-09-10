@@ -90,7 +90,7 @@ function Header() {
                   {notification.map((data, index)=> (
                     <div key={index} className="flex flex-col mb-3">
                       <div className="flex gap-2">
-                        <img className="w-5 h-6" src={data.icon} alt="" />
+                        <img className="w-5 h-5" src={data.icon} alt="" />
                         <h2 className="font-medium">{data.msg}</h2>
                       </div>
                       <p className="text-zinc-400 text-[12px] pl-3">{data.time}</p>
