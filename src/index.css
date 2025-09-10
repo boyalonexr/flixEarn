@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-::-webkit-scrollbar-button {
-  display: none;
-  
+.tooltip-copied::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 25px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #27272a; /* Same as tooltip background */
 }
-
