@@ -10,7 +10,8 @@ import flix from '../assets/currencies/flixcoin.svg'
 import usdt from '../assets/currencies/usdt.svg'
 import btc from '../assets/currencies/btc.svg'
 import doge from '../assets/currencies/doge.svg'
-
+import Wallet from '../Components/Wallet'
+import { AnimatePresence } from "framer-motion";
 
 function Header() {
   const [activePopup, setActivePopup] = useState(null)
@@ -45,13 +46,21 @@ function Header() {
         </div>
 
         <div className="text-black text-2xl flex gap-2">
-          <div className="relative">
+          <div>
              
             <button 
             onClick={() => toogleActive("wallet")}
             className="bg-green-500 p-2 rounded-full">
               <LuWallet />
             </button>
+
+          <AnimatePresence>
+            { activePopup === 'wallet' && 
+              <Wallet 
+              toogleActive = {toogleActive}
+              />}
+ 
+          </AnimatePresence>
             
           </div>
 
@@ -68,28 +77,36 @@ function Header() {
             
               <span className="absolute -top-1 -right-1 w-5 h-5  bg-red-500 text-white text-xs flex justify-center items-center rounded-full">{notification.length}</span>
             </button>
+            {activePopup === 'notify' && (
+              <>
+                <div 
+                  className="fixed inset-0 z-10"
+                  onClick={() => toogleActive(false)} 
+                />
 
-            {activePopup === 'notify' && <div className="absolute right-0 bg-[#141414] text-[#dfdede] w-60 text-sm rounded-xl border border-gray-800 p-4 pt-6">
-              <div 
-              onClick={()=> toogleActive(false)}
-              className="fixed inset-0"/>
+                <div 
+                  className="absolute right-0 z-20 bg-[#141414] text-[#dfdede] w-60 text-sm rounded-xl border border-gray-800 p-4 pt-6"
+                >
+                  {notification.map((data, index)=> (
+                    <div key={index} className="flex flex-col mb-3">
+                      <div className="flex gap-2">
+                        <img className="w-5 h-6" src={data.icon} alt="" />
+                        <h2 className="font-medium">{data.msg}</h2>
+                      </div>
+                      <p className="text-zinc-400 text-[12px] pl-3">{data.time}</p>
+                    </div>
+                  ))}
 
-              {notification.map((data, index)=> (
-                <>
                   <div 
-                  key={index}
-                  className="flex gap-2">
-                    <img className="w-[15px]" src={data.icon} alt="" />
-                    <h2 className="font-medium">{data.msg}</h2>
+                    onClick={()=> toogleActive(false)}
+                    className="text-center font-medium uppercase border-t pt-2 transition-colors duration-500 hover:text-red-500 cursor-pointer"
+                  >
+                    Clear All
                   </div>
-                  <p className="text-zinc-400 text-[12px] pb-3">{data.time}</p>
-                </>
-              ))}
+                </div>
+              </>
+            )}
 
-              <div 
-              onClick={()=> toogleActive(false)}
-              className="text-center font-medium uppercase border-t pt-2 transition-colors duration-500 hover:text-red-500">Clear All</div>
-            </div>}
           </div>
 
           <div className="relative">
