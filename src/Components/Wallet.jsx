@@ -32,6 +32,7 @@ function Wallet({ toogleActive }) {
   const [ open, setOpen ] = useState(null)
   const address = "TWdqXPvsDgLdyKdo4aLYB7YQ7YHMeKvJio";
   const [copied, setCopied ] = useState(false)
+  const [ max, setMax ] = useState(false)
 
 
   const setActiveWalletType = (type) => {
@@ -220,11 +221,14 @@ function Wallet({ toogleActive }) {
                   </label>
 
                   <div className="flex relative">
-                  <input className="flex-1 h-11 rounded-l-full transition-all duration-500 border-r border-black  focus:ring-1 focus:ring-red-500 focus:outline-none bg-[#1e1f21] px-4" type="text" id="input2" name="input2" required />
+                  <input className="flex-1 h-11 rounded-l-full transition-all duration-500 border-r border-black  focus:ring-1 focus:ring-red-500 focus:outline-none bg-[#1e1f21] px-4" type="text" value={max ? selected.amount : ''} id="input2" name="input2" required />
 
-                  <img className="w-[1.2rem] absolute right-1/4 mr-2 top-3" src={selected.icon} alt="" />
+                  <img className="w-[1.2rem] absolute right-1/4 mr-2 top-3" src={selected.icon} alt="" />  
 
-                  <p className="px-5 h-11 rounded-r-full bg-[#1e1f21] flex items-center">Max</p>
+                  <p
+                  onClick={()=> setMax(prev => !prev)}
+                  className={`px-5 h-11 rounded-r-full bg-[#1e1f21] flex items-center
+                    ${ max ? 'text-red-500' : ''}`}>Max</p>
                   </div>
 
                   <p className="text-center capitalize py-4">Minimum withdrawal is 0.00005981 BTC. Your withdrawal will have 0.00009583 BTC subtracted from your remaining balance to cover the fee required to process the transaction.</p>
@@ -279,7 +283,7 @@ function Wallet({ toogleActive }) {
                     
                     <div
                       onClick={()=> toogleOpen('currency')}
-                      className={`flex h-11 rounded-r-full ${ open === 'currency' ? 'border-red-500 border' : 'border-l border-l-black'}`}>
+                      className={`flex items-center h-11 rounded-r-full ${ open === 'currency' ? 'border-red-500 border' : 'border-l border-l-black'}`}>
                       <span className="flex items-center gap-2 px-4">
                         <img className="w-[1.3rem]" src={selected.icon} alt="" />
                         <p>{selected.name}</p>
