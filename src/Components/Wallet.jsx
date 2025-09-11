@@ -212,19 +212,19 @@ function Wallet({ toogleActive }) {
               <form className="mt-4" id="myForm">
                   <label className="block pb-2" for="input1">BTC Address 
                     <span className="text-red-500"> *</span></label>
-                  <input className="w-full h-11 rounded-full  bg-[#1e1f21] px-4" type="text" id="input1" name="input1" required />
+                  <input className="w-full h-11 rounded-full focus:ring-1 focus:ring-red-500 focus:outline-none  bg-[#1e1f21] transition-all duration-500 px-4" type="text" id="input1" name="input1" required />
 
-                  <label className="block pb-2 mt-3" for="input1">Amount 
+                  <label className="block pb-2 mt-3" for="input2">Amount 
                     <span className="text-red-500"> *</span>
                     <span className="absolute right-0">{selected.amount}</span>
                   </label>
 
                   <div className="flex relative">
-                  <input className="flex-1 h-11 rounded-l-full  bg-[#1e1f21] px-4" type="text" id="input2" name="input2" required />
+                  <input className="flex-1 h-11 rounded-l-full transition-all duration-500 border-r border-black  focus:ring-1 focus:ring-red-500 focus:outline-none bg-[#1e1f21] px-4" type="text" id="input2" name="input2" required />
 
                   <img className="w-[1.2rem] absolute right-1/4 mr-2 top-3" src={selected.icon} alt="" />
 
-                  <p className="px-5 py-2 border-l border-black rounded-r-full bg-[#1e1f21] flex items-center">Max</p>
+                  <p className="px-5 h-11 rounded-r-full bg-[#1e1f21] flex items-center">Max</p>
                   </div>
 
                   <p className="text-center capitalize py-4">Minimum withdrawal is 0.00005981 BTC. Your withdrawal will have 0.00009583 BTC subtracted from your remaining balance to cover the fee required to process the transaction.</p>
