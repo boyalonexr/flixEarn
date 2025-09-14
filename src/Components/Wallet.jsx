@@ -11,11 +11,11 @@ import doge from "../assets/currencies/doge.svg";
 
 const cryptoOptions = [
   { icon: btc, name: "BTC", amount: 0.007025 },
-  { icon: eth, name: "ETH", amount: 0.0 },
-  { icon: ltc, name: "LTC", amount: 0.0 },
-  { icon: usdc, name: "USDC", amount: 0.0 },
+  { icon: eth, name: "ETH", amount: 0.00 },
+  { icon: ltc, name: "LTC", amount: 0.00 },
+  { icon: usdc, name: "USDC", amount: 0.00 },
   { icon: usdt, name: "USDT", amount: 107.03 },
-  { icon: doge, name: "DOGE", amount: 0.0 },
+  { icon: doge, name: "DOGE", amount: 0.00 },
 ];
 
 const networkOptions = [{ name: "TRC-20" }, { name: "ERC-20" }, { name: "BEP-20" }];
@@ -50,7 +50,9 @@ function Wallet({ toogleActive }) {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/80 z-10" />
+      <div 
+      onClick={()=> toogleActive(false)}
+      className="fixed inset-0 bg-black/80 z-10" />
 
       <motion.div
         key="wallet"
@@ -59,7 +61,7 @@ function Wallet({ toogleActive }) {
         exit={{ opacity: 0, y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="fixed left-0 top-5 right-0 bg-[#141414] z-20 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-lg"
+        className="fixed left-0 top-5 right-0 bg-[#141414] z-20 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-md"
       >
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl">Wallet</h1>
@@ -148,7 +150,7 @@ function Wallet({ toogleActive }) {
               </div>
 
               {open === "currency" && (
-                <div className="absolute top-1/4 -mt-1 max-h-[13rem] w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
+                <div className="absolute top-1/4 -mt-1 max-h-[11rem] w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
                   {cryptoOptions.map((crypto, index) => (
                     <button
                       onClick={() => {
@@ -158,7 +160,7 @@ function Wallet({ toogleActive }) {
                       key={index}
                       className="flex py-2 items-center gap-2 w-full"
                     >
-                      <img className="w-[2rem]" src={crypto.icon} alt="" />
+                      <img className="w-[1.5rem]" src={crypto.icon} alt="" />
                       <p>{crypto.name}</p>
                     </button>
                   ))}
@@ -245,7 +247,7 @@ function Wallet({ toogleActive }) {
 
 
               {open === 'currency' && 
-              <div className="absolute top-1/4 -mt-7 max-h-40 w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
+              <div className="absolute top-1/4 -mt-5 max-h-40 w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
                   { cryptoOptions.map(( crypto, index) =>(<button 
                     onClick={()=> {
                       setSelected(crypto)
