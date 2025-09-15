@@ -29,22 +29,22 @@ function Header() {
     { label: 'Transactions', icon: <MdAttachMoney /> },
   ]
 
-  const toogleActive = (type ) => {
+  const toggleActive = (type ) => {
       setActivePopup(prev => (prev === type ? null : type))
   }
 
   return (
     <>
-    <header className='bg-[#141414] px-4 md:px-8'>
+    <header className='fixed w-full border-b border-[#1f2e42]  bg-[#141414] px-4 md:px-8'>
       <div className="flex max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto justify-between items-center">
         <div className="flex items-center w-full">
-          <div className="w-[30%] h-20 flex justify-start x12:border-r border-[#3c3f43] items-center ">
+          <div className="w-[30%] h-20 flex justify-start x12:border-r border-[#1f2e42] items-center ">
             <h1 className='text-white text-3xl font-bold font-reddit'>Flix
               <span className='text-red-500'>Earn</span></h1>
           </div>
 
           <div 
-            onClick={() => toogleActive("search")}
+            onClick={() => toggleActive("search")}
             className="relative mx-6 hidden lg:block">
               <IoMdSearch className="absolute top-3 left-3 text-2xl text-[#78797b]" />
               <input
@@ -57,7 +57,7 @@ function Header() {
 
         <div className="relative hidden x12:block">
           <button 
-            onClick={() => toogleActive("login")}
+            onClick={() => toggleActive("login")}
             className={`p-3 rounded-full bg-[#1e1f21]
                         transition-colors duration-500
                         ${activePopup === 'login' 
@@ -69,7 +69,7 @@ function Header() {
           {activePopup === 'login' && (
             <>
               <div 
-                onClick={()=> toogleActive(false)}
+                onClick={()=> toggleActive(false)}
                 className="fixed inset-0"/>
 
               <div className="absolute -left-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-2 py-3">
@@ -95,7 +95,7 @@ function Header() {
         <div className="text-black text-2xl flex gap-4">
           <div className="relative flex">
              <button 
-                onClick={() => toogleActive("search")}
+                onClick={() => toggleActive("search")}
                 className={`p-2 md:p-3 md:mr-4 hidden md:block lg:hidden rounded-full 
                             hover:bg-red-500 hover:text-white 
                             transition-colors duration-500
@@ -106,7 +106,7 @@ function Header() {
               </button>
              
              <div 
-                onClick={() => toogleActive("balance")}
+                onClick={() => toggleActive("balance")}
                 className="bg-[#1e1f21] font-semibold hidden md:block p-2 md:p-3 rounded-full text-white w-[15rem]">
                 <button className="flex items-center gap-4 w-full">
                   <div className="flex items-center">
@@ -119,7 +119,7 @@ function Header() {
               </div>
                 
                 <button 
-                onClick={() => toogleActive("wallet")}
+                onClick={() => toggleActive("wallet")}
                 className="absolute top-0 right-0 bg-green-500 p-2 md:p-3 rounded-full md:rounded-none md:rounded-r-full">
                   <LuWallet />
                 </button>
@@ -128,7 +128,7 @@ function Header() {
          <AnimatePresence>
             { activePopup === 'search' && 
               <MovieSearch 
-              toogleActive = {toogleActive}
+              toggleActive = {toggleActive}
               />}
  
           </AnimatePresence>        
@@ -137,7 +137,7 @@ function Header() {
           <>
             <div
               className="fixed inset-0 z-10"
-              onClick={() => toogleActive(false)}
+              onClick={() => toggleActive(false)}
             />
             <div 
               // ✅ Added fixed width to popup so it doesn't resize on click
@@ -150,7 +150,7 @@ function Header() {
                     key={index}
                     onClick={() => {
                       setBalance(balance)
-                      toogleActive(false)
+                      toggleActive(false)
                     }}
                     // ✅ Added hover effect and fixed layout
                     className="flex justify-between items-center pb-2 cursor-pointer hover:bg-[#1f1f1f] rounded-md px-2"
@@ -189,7 +189,7 @@ function Header() {
 
           <div className="relative">
             <button 
-            onClick={() => toogleActive("notify")}
+            onClick={() => toggleActive("notify")}
             className={`relative p-2 md:p-3 md:mx-2 rounded-full 
                         hover:bg-red-500 hover:text-white 
                         transition-colors duration-500
@@ -205,7 +205,7 @@ function Header() {
               <>
                 <div 
                   className="fixed inset-0 z-10"
-                  onClick={() => toogleActive(false)} 
+                  onClick={() => toggleActive(false)} 
                 />
 
                 <div 
@@ -222,7 +222,7 @@ function Header() {
                   ))}
 
                   <div 
-                    onClick={()=> toogleActive(false)}
+                    onClick={()=> toggleActive(false)}
                     className="text-center font-medium uppercase border-t pt-2 transition-colors duration-500 hover:text-red-500 cursor-pointer"
                   >
                     Clear All
@@ -235,7 +235,7 @@ function Header() {
 
           <div className="relative">
            <button 
-            onClick={() => toogleActive("user")}
+            onClick={() => toggleActive("user")}
             className={`p-2 md:p-3 rounded-full 
                         hover:bg-red-500 hover:text-white 
                         transition-colors duration-500
@@ -249,7 +249,7 @@ function Header() {
            {activePopup === 'user' && (
             <>
               <div 
-                onClick={()=> toogleActive(false)}
+                onClick={()=> toggleActive(false)}
                 className="fixed inset-0"/>
                 
               <div className="absolute -right-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-4 pt-6">
