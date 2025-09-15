@@ -15,8 +15,8 @@ export default function Footer() {
   const [active, setActive] = useState("menu");
 
   return (
-    <nav
-      className="fixed bottom-0 left-0 w-full bg-[#08090A] border-t border-gray-800 z-50 font-sans"
+    <footer
+      className="fixed bottom-0 left-0 w-full md:hidden bg-[#08090A] border-t border-gray-800 z-50 font-sans"
       style={{ paddingBottom: "env(safe-area-inset-bottom)", paddingTop: "0.5rem" }}
       aria-label="Bottom navigation"
     >
@@ -54,6 +54,6 @@ export default function Footer() {
           })}
         </div>
       </div>
-    </nav>
+    </footer>
   );
 }
