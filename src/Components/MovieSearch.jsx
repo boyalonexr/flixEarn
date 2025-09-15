@@ -5,8 +5,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { IoPlayOutline } from "react-icons/io5";
 import { CiBookmark } from "react-icons/ci";
 import { AiOutlineFire } from "react-icons/ai";
-import movieImg from '../assets/cover1.jpg'
-import flix from '../assets/currencies/flixcoin.svg'
+import { moviesData  } from './MoviesData';
 
 const VideoCard = ({ imgSrc, title, rating, genre, cryptoIcon, rate, isNew, onClick, isActive }) => {
   return (
@@ -38,13 +37,13 @@ const VideoCard = ({ imgSrc, title, rating, genre, cryptoIcon, rate, isNew, onCl
         )}
 
         {/* Rating & Bookmark */}
-        <div className="absolute top-2 left-2 w-full text-white px-2">
+        <div className="absolute top-2 left-0 w-full text-white px-2">
           <div className='flex justify-between items-center'>
             <span className="bg-yellow-500 text-black text-sm w-9 h-9 rounded-full flex justify-center items-center">
               {rating}
             </span>
             <span className='bg-black w-9 h-9 rounded-full flex justify-center items-center'>
-              <CiBookmark className='text-base text-[#1e]' />
+              <CiBookmark className='text-base' />
             </span>
           </div>
         </div>
@@ -83,43 +82,12 @@ const VideoCard = ({ imgSrc, title, rating, genre, cryptoIcon, rate, isNew, onCl
   );
 };
 
-
-
-
 function MovieSearch({ toogleActive }) {
   const inputRef = useRef(null)
   const [ active, setActive ] = useState(null)
    const [activeCard, setActiveCard] = useState(null);
+   const [selectedGenre, setSelectedGenre] = useState('All Content');
 
-  const videos = [
-    { id: 1, 
-      title: "Lost in the Abyss", 
-      rating: "8.4", 
-      imgSrc: movieImg, 
-      genre: 'Romance, Drama', 
-      cryptoIcon: flix,
-      rate: '+0.005',
-      isNew: true, 
-    },
-    { id: 2, 
-      title: "Benched", 
-      rating: "7.1", 
-      imgSrc: movieImg, 
-      genre: 'Action, Thriller',
-      cryptoIcon: flix,
-      rate: '+0.003',
-      isNew: false, 
-    },
-    { id: 3, 
-      title: "Frozen", 
-      rating: "7.5", 
-      imgSrc: movieImg, 
-      genre: 'Comedy',
-      cryptoIcon: flix,
-      rate: '+0.0009',
-      isNew: true, 
-    },
-  ];
 
   useEffect(()=> {
     return inputRef.current?.focus();
@@ -128,7 +96,7 @@ function MovieSearch({ toogleActive }) {
   return (
     <>
       <div 
-        // onClick={()=> toogleActive(false)}
+        onClick={()=> toogleActive(false)}
         className="fixed inset-0 bg-black/80 z-10" />
   
       <motion.div
@@ -138,14 +106,14 @@ function MovieSearch({ toogleActive }) {
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="fixed left-0 top-1/3 right-0 bg-[#141414] z-20 text-white p-4 font-reddit rounded-xl shadow-lg w-[95%] mx-auto "
+        className="fixed left-0 top-[15vh] right-0 bg-[#141414] z-20 text-white p-4 font-reddit rounded-xl shadow-lg max-w-[46rem] mx-auto "
       >
         <div>
           <section className='flex gap-2 border-b border-zinc-700 pb-4'>
             <div 
             onClick={()=> setActive(prev => !prev)}
             className='relative flex items-center rounded-full px-4 justify-between w-1/5 bg-[#1e1f21]'>
-              <h2 className='text-sm'>All Content</h2>
+              <h2 className='text-sm'>{selectedGenre}</h2>
               <RiArrowDropDownLine 
                 className={`${ active ? 'text-red-500' : 'text-[#a0a2a5]'}`} />
             </div>
@@ -170,6 +138,10 @@ function MovieSearch({ toogleActive }) {
                 {['Movies', 'Tv Series', 'Anime'].map(genre => (
                   <p 
                   key={genre}
+                  onClick={() => {
+                    setSelectedGenre(genre);
+                    setActive(false);
+                  }}
                   className='text-base p-2'>{genre}</p>
                 ))}
               </div>
@@ -177,8 +149,8 @@ function MovieSearch({ toogleActive }) {
           </section>
 
 
-          <section className='flex gap-3 overflow-x-auto whitespace-nowrap py-4'>
-              <span className="px-3 py-2 text-red-500 text-base font-semibold rounded-full shadow-sm bg-red-600/10">
+          <section className='flex gap-3 overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-red-900 scrollbar-track-transparent py-4'>
+              <span className="px-3 py-2 text-red-600 text-base font-semibold rounded-full shadow-sm bg-red-600/10">
                 #Early Access
               </span>
 
@@ -193,13 +165,13 @@ function MovieSearch({ toogleActive }) {
             ))}
           </section>
 
-           <div className="flex gap-4 py-4">
-              {videos.map((video) => (
+           <div className="flex overflow-y-scroll flex-wrap gap-4 scrollbar-thin scrollbar-thumb-red-900 scrollbar-track-transparent  max-h-[40rem] py-4">
+              {moviesData.map((movie) => (
                 <VideoCard
-                  key={video.id}
-                  {...video}
-                  isActive={activeCard === video.id}
-                  onClick={() => setActiveCard(video.id)}
+                  key={movie.id}
+                  {...movie}
+                  isActive={activeCard === movie.id}
+                  onClick={() => setActiveCard(movie.id)}
                 />
               ))}
             </div>

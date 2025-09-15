@@ -8,9 +8,18 @@ export default {
   ],
   theme: {
     extend: {
-       fontFamily: {
-        reddit: ['"Reddit Sans"', 'sans-serif'],
+       screens: {
+        'x12': '1200px', 
       },
+       fontFamily: {
+        reddit: ['Poppins', 'ui-sans-serif', 'system-ui', 'Reddit Sans', 'sans-serif'],
+      },
+      colors: {
+        // adjust HEX to match exact design
+        accent: {
+          DEFAULT: '#10B981', // emerald-500 like accent
+        },
+      },  
        animation: {
         'fade-in': 'fadeIn 0.3s ease-out',
         'fade-out': 'fadeOut 0.3s ease-out',

@@ -7,55 +7,18 @@ import { CgProfile } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdSubscriptions, MdPlaylistAddCheck, MdAttachMoney } from "react-icons/md";
 import { BiMessageAltDetail } from "react-icons/bi";
-import flix from '../assets/currencies/flixcoin.svg'
-import avax from '../assets/currencies/avax.svg'
-import bch from '../assets/currencies/bch.svg'
-import bnb from '../assets/currencies/bnb.svg'
-import dai from '../assets/currencies/dai.svg'
-import dash from '../assets/currencies/dash.svg'
-import usdt from '../assets/currencies/usdt.svg'
-import btc from '../assets/currencies/btc.svg'
-import eth from "../assets/currencies/eth.svg";
-import ltc from "../assets/currencies/ltc.svg";
-import matic from "../assets/currencies/matic.svg";
-import trx from "../assets/currencies/trx.svg";
-import usdc from "../assets/currencies/usdc.svg";
-import doge from '../assets/currencies/doge.svg'
-import xrp from "../assets/currencies/xrp.svg";
 import MovieSearch from "./MovieSearch";
 import Wallet from '../Components/Wallet'
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { IoReorderTwoOutline } from "react-icons/io5";
+import { IoMdSearch } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
-
-const balanceOptions = [
-  { icon: flix, name: "FXC", amount: 308.6556473 },
-  { icon: avax, name: "AVAX", amount: 0.0235062 },
-  { icon: bch, name: "BCH", amount: 13.4000004 },
-  { icon: bnb, name: "BNB", amount: 74.0000254 },
-  { icon: btc, name: "BTC", amount: 0.0070254 },
-  { icon: dai, name: "DAI", amount: 0.0046508 },
-  { icon: dash, name: "DASH", amount: 14.0000000 },
-  { icon: doge, name: "DOGE", amount: 0.0000000 },
-  { icon: eth, name: "ETH", amount: 0.0000000 },
-  { icon: ltc, name: "LTC", amount: 0.0000000 },
-  { icon: matic, name: "MATIC", amount: 0.0000000 },
-  { icon: trx, name: "TRX", amount: 0.00000000 },
-  { icon: usdc, name: "USDC", amount: 0.0000000 },
-  { icon: usdt, name: "USDT", amount: 107.0375301 },
-  { icon: xrp, name: "XRP", amount: 0.0000000 },
-];
-
+import { balanceOptions } from "./MoviesData";
+import { notification } from "./MoviesData";
 
 function Header() {
   const [activePopup, setActivePopup] = useState(null)
   const [ balance, setBalance ] = useState(balanceOptions[13])
-  
-  const notification = [
-    {icon: flix, msg: "Received 38 FXC", time: "3 hours ago" },
-    {icon: btc, msg: "Received 0.00056 BTC", time: "5 hours ago" },
-    {icon: usdt, msg: "Withdrawn 250 USDT", time: "6 hours ago" },
-    {icon: doge, msg: "Received 17 DOGE", time: "9 hours ago" },
-  ]
 
   const userData = [
     { label: 'Profile', icon: <CgProfile /> },
@@ -72,18 +35,68 @@ function Header() {
 
   return (
     <>
-    <header className='bg-[#141414] p-4 md:py-6'>
-      <div className="flex max-w-lg md:max-w-3xl mx-auto  justify-between items-center">
-        <div>
-          <h1 className='text-white text-3xl font-bold font-reddit'>Flix
-            <span className='text-red-500'>Earn</span></h1>
+    <header className='bg-[#141414] px-4 md:px-8'>
+      <div className="flex max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto justify-between items-center">
+        <div className="flex items-center w-full">
+          <div className="w-[30%] h-20 flex justify-start x12:border-r border-[#3c3f43] items-center ">
+            <h1 className='text-white text-3xl font-bold font-reddit'>Flix
+              <span className='text-red-500'>Earn</span></h1>
+          </div>
+
+          <div 
+            onClick={() => toogleActive("search")}
+            className="relative mx-6 hidden lg:block">
+              <IoMdSearch className="absolute top-3 left-3 text-2xl text-[#78797b]" />
+              <input
+                className='p-3 pl-10 px-4 w-full bg-[#1e1f21] text-white text-base focus:outline-none rounded-full' type="text" 
+                name="search" 
+                id="search"
+                placeholder='Search'
+                />
+          </div>
+
+        <div className="relative hidden x12:block">
+          <button 
+            onClick={() => toogleActive("login")}
+            className={`p-3 rounded-full bg-[#1e1f21]
+                        transition-colors duration-500
+                        ${activePopup === 'login' 
+                          ? 'text-red-500' 
+                          : 'text-[#b7babe]'}`}>
+            <IoReorderTwoOutline className="text-2xl" />
+          </button>
+
+          {activePopup === 'login' && (
+            <>
+              <div 
+                onClick={()=> toogleActive(false)}
+                className="fixed inset-0"/>
+
+              <div className="absolute -left-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-2 py-3">
+
+                <ul>
+                  {["Sign in", 'Sign up', 'Forgot password', '404 Page'].map((data, index) => (
+                    <li
+                      key={index}
+                      className="flex gap-2 items-center text-sm font-semibold py-2 pb-2 cursor-pointer hover:bg-[#222]"
+                    >
+                      <span className="text-[#81858c] text-lg">
+                        {data.icon}</span>
+                      {data}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          )}
+        </div>
         </div>
 
         <div className="text-black text-2xl flex gap-4">
           <div className="relative flex">
              <button 
                 onClick={() => toogleActive("search")}
-                className={`p-2 md:p-3 md:mr-4 hidden md:block rounded-full 
+                className={`p-2 md:p-3 md:mr-4 hidden md:block lg:hidden rounded-full 
                             hover:bg-red-500 hover:text-white 
                             transition-colors duration-500
                             ${activePopup === 'search' 
@@ -233,24 +246,29 @@ function Header() {
           </button>
 
 
-           {activePopup === 'user' && <div className="absolute -right-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-4 pt-6">
+           {activePopup === 'user' && (
+            <>
               <div 
-              onClick={()=> toogleActive(false)}
-              className="fixed inset-0"/>
+                onClick={()=> toogleActive(false)}
+                className="fixed inset-0"/>
+                
+              <div className="absolute -right-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-4 pt-6">
 
-              <ul>
-                {userData.map((data, index) => (
-                  <li
-                    key={index}
-                    className="flex gap-2 items-center text-sm font-semibold py-1 pb-2 cursor-pointer hover:bg-[#222]"
-                  >
-                    <span className="text-[#81858c] text-lg">
-                      {data.icon}</span>
-                    {data.label}
-                  </li>
-                ))}
-              </ul>
-            </div>}
+                <ul>
+                  {userData.map((data, index) => (
+                    <li
+                      key={index}
+                      className="flex gap-2 items-center text-sm font-semibold py-1 pb-2 cursor-pointer hover:bg-[#222]"
+                    >
+                      <span className="text-[#81858c] text-lg">
+                        {data.icon}</span>
+                      {data.label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          )}
           </div>
 
         </div>
