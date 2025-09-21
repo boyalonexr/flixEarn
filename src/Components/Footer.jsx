@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { FiMenu, FiGrid, FiUser } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
 import { MdOutlineLiveTv } from "react-icons/md";
-import MovieSearch from "./MovieSearch";
+
 
 const items = [
   { id: "menu", label: "Menu", Icon: FiMenu },
@@ -12,11 +11,7 @@ const items = [
   { id: "profile", label: "Profile", Icon: FiUser },
 ];
 
-export default function Footer() {
-  const [active, setActive] = useState("menu");
-  const toggleActive = (type ) => {
-      setActive(prev => (prev === type ? null : type))
-  }
+export default function Footer({toggleActivePopup, active}) {
 
   return (
     <footer
@@ -25,30 +20,25 @@ export default function Footer() {
       aria-label="Bottom navigation"
     >
       <div className="max-w-5xl mx-auto px-4">
-        <div className="flex justify-around items-center">
+        <div className="flex justify-between items-center">
           {items.map(({ id, label, Icon }) => {
             const isActive = id === active;
             return (
               <button
                 key={id}
-                onClick={() => toggleActive(id)}
+                onClick={() => toggleActivePopup(id)}
                 aria-label={label}
-                className="flex flex-col items-center justify-center gap-1 focus:outline-none"
+                className="flex flex-col items-center justify-center w-full py-2"
               >
-                <div
-                  className={`w-10 h-10 flex items-center justify-center rounded-full transition ${
-                    isActive ? "bg-accent/10" : "bg-transparent"
+                <Icon
+                  size={24}
+                  className={`mb-1 transition-colors ${
+                    isActive ? "text-red-500" : "text-gray-400"
                   }`}
-                >
-                  <Icon
-                    size={20}
-                    className={`${isActive ? "text-red-500" : "text-gray-400"} transition`}
-                  />
-                </div>
-
+                />
                 <span
-                  className={`text-[11px] tracking-wide ${
-                    isActive ? "text-white font-medium" : "text-gray-400"
+                  className={`text-xs tracking-tight transition-colors ${
+                    isActive ? "text-white font-medium" : "text-gray-500"
                   }`}
                 >
                   {label}
@@ -58,11 +48,6 @@ export default function Footer() {
           })}
         </div>
       </div>
-
-      {active === "search" && 
-          <MovieSearch 
-            toggleActive={toggleActive}
-          />}
     </footer>
   );
 }

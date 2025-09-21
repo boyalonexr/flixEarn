@@ -9,7 +9,7 @@ import { moviesData } from './MoviesData';
 
 const VideoCard = ({ imgSrc, title, rating, genre, cryptoIcon, rate, isNew, onClick, isActive }) => {
   return (
-    <div className="w-full sm:w-40 flex flex-col cursor-pointer" onClick={onClick}>
+    <div className="max-w-full sm:w-40 flex flex-col cursor-pointer" onClick={onClick}>
       {/* Poster container */}
       <div className="relative h-60 w-full rounded-xl overflow-hidden group">
         <img
@@ -24,7 +24,7 @@ const VideoCard = ({ imgSrc, title, rating, genre, cryptoIcon, rate, isNew, onCl
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 flex items-center justify-center overflow-hidden"
+            className="absolute inset-0 flex items-center justify-center o"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20 rounded-lg" />
             <div className="relative z-10 flex justify-center items-center w-16 h-16 rounded-full bg-white/50 backdrop-blur-sm">
@@ -106,10 +106,9 @@ function MovieSearch({ toggleActive }) {
         transition={{ duration: 0.3, ease: "easeOut" }}
         viewport={{ once: true }}
         className="
-          fixed top-[10vh] inset-0 md:ml-4 -translate-x-1/2 
-          bg-[#141414] z-20 text-white p-4 font-reddit md:rounded-xl shadow-lg
-          max-w-[100%] sm:w-[85%] md:w-[46rem] lg:w-[55rem]
-          max-h-[80vh] overflow-hidden
+          fixed top-[10vh] z-20 md:mt-10 inset-0 -translate-x-1/2 
+          bg-[#141414] text-white p-4 font-reddit md:rounded-xl shadow-lg
+          max-w-[100%] sm:w-[85%] mx-auto md:w-[90%] lg:w-[55rem] overflow-hidden max-h-[80vh]
         "
       >
         <div>
@@ -174,7 +173,7 @@ function MovieSearch({ toggleActive }) {
           </section>
 
           {/* Movies Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 overflow-y-auto scrollbar-thin scrollbar-thumb-red-900 scrollbar-track-transparent max-h-[80vh] py-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 scrollbar-track-transparent max-h-[65vh] py-4">
             {moviesData.map((movie) => (
               <VideoCard
                 key={movie.id}

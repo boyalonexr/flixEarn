@@ -52,7 +52,7 @@ function Wallet({ toogleActive }) {
     <>
       <div 
       onClick={()=> toogleActive(false)}
-      className="fixed inset-0 bg-black/80 z-10" />
+      className="fixed inset-0 bg-black/80 z-1" />
 
       <motion.div
         key="wallet"
@@ -61,7 +61,7 @@ function Wallet({ toogleActive }) {
         exit={{ opacity: 0, y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="fixed left-0 top-5 right-0 bg-[#141414] z-20 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-md"
+        className="fixed left-0 top-5 right-0 bg-[#141414] z-10 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-md"
       >
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl">Wallet</h1>

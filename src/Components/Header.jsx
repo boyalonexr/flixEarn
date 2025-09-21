@@ -8,16 +8,15 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { MdSubscriptions, MdPlaylistAddCheck, MdAttachMoney } from "react-icons/md";
 import { BiMessageAltDetail } from "react-icons/bi";
 import MovieSearch from "./MovieSearch";
-import Wallet from '../Components/Wallet'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { IoReorderTwoOutline } from "react-icons/io5";
 import { IoMdSearch } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 import { balanceOptions } from "./MoviesData";
 import { notification } from "./MoviesData";
+import Wallet from './Wallet'
 
-function Header() {
-  const [activePopup, setActivePopup] = useState(null)
+function Header({toggleActivePopup, active}) {
   const [ balance, setBalance ] = useState(balanceOptions[13])
 
   const userData = [
@@ -29,13 +28,9 @@ function Header() {
     { label: 'Transactions', icon: <MdAttachMoney /> },
   ]
 
-  const toggleActive = (type ) => {
-      setActivePopup(prev => (prev === type ? null : type))
-  }
-
   return (
     <>
-    <header className='fixed w-full border-b border-[#1f2e42]  bg-[#141414] px-4 md:px-8'>
+    <header className='fixed top-0 z-40 w-full border-b border-[#1f2e42]  bg-[#141414] px-4 md:px-8'>
       <div className="flex max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto justify-between items-center">
         <div className="flex items-center w-full">
           <div className="w-[30%] h-20 flex justify-start x12:border-r border-[#1f2e42] items-center ">
@@ -44,7 +39,7 @@ function Header() {
           </div>
 
           <div 
-            onClick={() => toggleActive("search")}
+            onClick={() => toggleActivePopup("search")}
             className="relative mx-6 hidden lg:block">
               <IoMdSearch className="absolute top-3 left-3 text-2xl text-[#78797b]" />
               <input
@@ -57,20 +52,20 @@ function Header() {
 
         <div className="relative hidden x12:block">
           <button 
-            onClick={() => toggleActive("login")}
-            className={`p-3 rounded-full bg-[#1e1f21]
+            onClick={() => toggleActivePopup("login")}
+            className={`p-3 rounded-full z-10 bg-[#1e1f21]
                         transition-colors duration-500
-                        ${activePopup === 'login' 
+                        ${active === 'login' 
                           ? 'text-red-500' 
                           : 'text-[#b7babe]'}`}>
             <IoReorderTwoOutline className="text-2xl" />
           </button>
 
-          {activePopup === 'login' && (
+          {active === 'login' && (
             <>
               <div 
-                onClick={()=> toggleActive(false)}
-                className="fixed inset-0"/>
+                onClick={()=> toggleActivePopup(false)}
+                className="fixed inset-0 z-1"/>
 
               <div className="absolute -left-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-2 py-3">
 
@@ -95,49 +90,49 @@ function Header() {
         <div className="text-black text-2xl flex gap-4">
           <div className="relative flex">
              <button 
-                onClick={() => toggleActive("search")}
-                className={`p-2 md:p-3 md:mr-4 hidden md:block lg:hidden rounded-full 
+                onClick={() => toggleActivePopup("search")}
+                className={`p-2 md:p-3 z-10 md:mr-4 hidden md:block lg:hidden rounded-full 
                             hover:bg-red-500 hover:text-white 
                             transition-colors duration-500
-                            ${activePopup === 'search' 
+                            ${active === 'search' 
                               ? 'bg-red-500 text-white' 
                               : 'bg-[#b9cbe3]'}`}>
                 <IoIosSearch />
               </button>
              
              <div 
-                onClick={() => toggleActive("balance")}
-                className="bg-[#1e1f21] font-semibold hidden md:block p-2 md:p-3 rounded-full text-white w-[15rem]">
+                onClick={() => toggleActivePopup("balance")}
+                className="bg-[#1e1f21] font-semibold hidden md:block z-10 p-2 md:p-3 rounded-full text-white w-[15rem]">
                 <button className="flex items-center gap-4 w-full">
                   <div className="flex items-center">
                     <img className="mx-3 w-[1.5rem]" src={balance.icon} alt="" />
                     <p className="text-base pr-3 w-20">{balance.amount}</p>
                   </div>
 
-                  <RiArrowDropDownLine className={`${activePopup === 'balance' ? 'text-red-500' : ''}`} />
+                  <RiArrowDropDownLine className={`${active === 'balance' ? 'text-red-500' : ''}`} />
                 </button>
               </div>
                 
                 <button 
-                onClick={() => toggleActive("wallet")}
-                className="absolute top-0 right-0 bg-green-500 p-2 md:p-3 rounded-full md:rounded-none md:rounded-r-full">
+                onClick={() => toggleActivePopup("wallet")}
+                className="absolute z-10 top-0 right-0 bg-green-500 p-2 md:p-3 rounded-full md:rounded-none md:rounded-r-full">
                   <LuWallet />
                 </button>
 
                             
          <AnimatePresence>
-            { activePopup === 'search' && 
-              <MovieSearch 
-              toggleActive = {toggleActive}
+            { active === 'search' && 
+              <MovieSearch
+              toggleActive = {toggleActivePopup}
               />}
  
           </AnimatePresence>        
           
-       {activePopup === 'balance' && (
+       {active === 'balance' && (
           <>
             <div
-              className="fixed inset-0 z-10"
-              onClick={() => toggleActive(false)}
+              className="fixed inset-0 z-1"
+              onClick={() => toggleActivePopup(false)}
             />
             <div 
               // ✅ Added fixed width to popup so it doesn't resize on click
@@ -150,7 +145,7 @@ function Header() {
                     key={index}
                     onClick={() => {
                       setBalance(balance)
-                      toggleActive(false)
+                      toggleActivePopup(false)
                     }}
                     // ✅ Added hover effect and fixed layout
                     className="flex justify-between items-center pb-2 cursor-pointer hover:bg-[#1f1f1f] rounded-md px-2"
@@ -178,9 +173,9 @@ function Header() {
 
 
           <AnimatePresence>
-            { activePopup === 'wallet' && 
+            { active === 'wallet' && 
               <Wallet 
-              toogleActive = {toogleActive}
+              toogleActive = {toggleActivePopup}
               />}
  
           </AnimatePresence>
@@ -189,11 +184,11 @@ function Header() {
 
           <div className="relative">
             <button 
-            onClick={() => toggleActive("notify")}
-            className={`relative p-2 md:p-3 md:mx-2 rounded-full 
+            onClick={() => toggleActivePopup("notify")}
+            className={`relative z-10 p-2 md:p-3 md:mx-2 rounded-full 
                         hover:bg-red-500 hover:text-white 
                         transition-colors duration-500
-                        ${activePopup === 'notify' 
+                        ${active === 'notify' 
                           ? 'bg-red-500 text-white' 
                           : 'bg-[#b9cbe3]'}`}>
               <IoMdNotificationsOutline />
@@ -201,15 +196,15 @@ function Header() {
               <span className="absolute -top-1 -right-1 w-5 h-5  bg-red-500 text-white text-xs flex justify-center items-center rounded-full">{notification.length}</span>
             </button>
 
-            {activePopup === 'notify' && (
+            {active === 'notify' && (
               <>
                 <div 
-                  className="fixed inset-0 z-10"
-                  onClick={() => toggleActive(false)} 
+                  className="fixed inset-0 z-1"
+                  onClick={() => toggleActivePopup(false)} 
                 />
 
                 <div 
-                  className="absolute right-0 z-20 bg-[#141414] text-[#dfdede] w-60 text-sm rounded-xl border border-gray-800 p-4 pt-6"
+                  className="absolute right-0 bg-[#141414] text-[#dfdede] w-60 text-sm rounded-xl border border-gray-800 p-4 pt-6"
                 >
                   {notification.map((data, index)=> (
                     <div key={index} className="flex flex-col mb-3">
@@ -235,22 +230,22 @@ function Header() {
 
           <div className="relative">
            <button 
-            onClick={() => toggleActive("user")}
-            className={`p-2 md:p-3 rounded-full 
+            onClick={() => toggleActivePopup("user")}
+            className={`p-2 md:p-3 z-10 rounded-full 
                         hover:bg-red-500 hover:text-white 
                         transition-colors duration-500
-                        ${activePopup === 'user' 
+                        ${active === 'user' 
                           ? 'bg-red-500 text-white' 
                           : 'bg-[#b9cbe3]'}`}>
             <FiUser />
           </button>
 
 
-           {activePopup === 'user' && (
+           {active === 'user' && (
             <>
               <div 
-                onClick={()=> toggleActive(false)}
-                className="fixed inset-0"/>
+                onClick={()=> toggleActivePopup(false)}
+                className="fixed inset-0 z-1"/>
                 
               <div className="absolute -right-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-4 pt-6">
 
