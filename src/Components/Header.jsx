@@ -30,7 +30,7 @@ function Header({toggleActivePopup, active}) {
 
   return (
     <>
-    <header className='fixed top-0 z-40 w-full border-b border-[#1f2e42]  bg-[#141414] px-4 md:px-8'>
+    <header className='fixed top-0 z-40 w-full border-b border-[#242323]  bg-[#141414] px-4 md:px-8'>
       <div className="flex max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto justify-between items-center">
         <div className="flex items-center w-full">
           <div className="w-[30%] h-20 flex justify-start x12:border-r border-[#1f2e42] items-center ">

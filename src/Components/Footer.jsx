@@ -15,7 +15,7 @@ export default function Footer({toggleActivePopup, active}) {
 
   return (
     <footer
-      className="fixed bottom-0 left-0 w-full md:hidden bg-[#08090A] border-t border-gray-800 z-40 font-sans"
+      className="fixed bottom-0 left-0 w-full md:hidden bg-[#08090A] border-t border-[#242323] z-40 font-sans"
       style={{ paddingBottom: "env(safe-area-inset-bottom)", paddingTop: "0.5rem" }}
       aria-label="Bottom navigation"
     >
