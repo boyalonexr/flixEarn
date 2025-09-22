@@ -219,7 +219,7 @@ function Wallet({ toogleActive }) {
                   </label>
 
                   <div className="flex relative">
-                  <input className="flex-1 h-11 rounded-l-full transition-all duration-500 border-r border-black  focus:ring-1 focus:ring-red-500 focus:outline-none bg-[#1e1f21] px-4" type="text" value={max ? selected.amount : '0.00'} id="input2" name="input2" required />
+                  <input className="w-full border h-11 rounded-l-full transition-all duration-500 border-r border-black  focus:ring-1 focus:ring-red-500 focus:outline-none bg-[#1e1f21] px-4" type="text" value={max ? selected.amount : '0.00'} id="input2" name="input2" required />
 
                   <img className="w-[1.2rem] absolute right-1/4 mr-2 top-3" src={selected.icon} alt="" />  
 
@@ -275,7 +275,7 @@ function Wallet({ toogleActive }) {
                 <div className="flex items-center">
                   <input
                     onClick={() => setOpen(null)}
-                    className="bg-[#1e1f21] flex-1 rounded-l-full h-11 px-4 focus:ring-1 focus:outline-none focus:ring-red-500"
+                    className="bg-[#1e1f21] w-full rounded-l-full h-11 px-4 focus:ring-1 focus:outline-none focus:ring-red-500"
                     type="text"
                     id="purchase1"
                     placeholder="0.00"
@@ -304,7 +304,7 @@ function Wallet({ toogleActive }) {
                 <div className="flex items-center">
                   <input
                     onClick={() => setOpen(null)}
-                    className="bg-[#1e1f21] flex-1 rounded-l-full h-11 px-4 focus:ring-1 focus:outline-none focus:ring-red-500"
+                    className="bg-[#1e1f21] w-full rounded-l-full h-11 px-4 focus:ring-1 focus:outline-none focus:ring-red-500"
                     type="text"
                     id="purchase2"
                     placeholder={payWithCrypto.amount}
