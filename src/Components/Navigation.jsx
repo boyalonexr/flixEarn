@@ -23,7 +23,7 @@ import { AiOutlineFire } from "react-icons/ai";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { BsQuestionCircle } from "react-icons/bs";
 
-function Navigation({ toggleActivePopUp, active }) {
+function Navigation({ active }) {
   const [activeItem, setActiveItem] = useState("home");
   const [openCategories, setOpenCategories] = useState(false);
   const [activeCategory, setActiveCategory] = useState("");
@@ -83,11 +83,12 @@ function Navigation({ toggleActivePopUp, active }) {
 
   return (
     <nav
-      className={`bg-[#141414] text-white h-screen w-full fixed top-24 left-0 z-20 px-4
-        transform transition-transform duration-500 ease-in-out
-        ${active === "menu" ? "translate-x-0" : "-translate-x-full"}`}
+      className={`bg-[#141414] text-white h-screen w-full fixed x12:w-[22%] top-20 left-0 z-20 px-4
+        transform border-r border-[#242323] transition-transform duration-500 ease-in-out
+        ${active === "menu" ? "translate-x-0" : "-translate-x-full"} 
+          x12:translate-x-0`}
     >
-      <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 pb-4 scrollbar-track-transparent max-h-[80vh]">
+      <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 my-2 pb-8 pt-4 scrollbar-track-transparent max-h-[80vh]">
         {navItems.map((item, index) => {
           const isActive = activeItem === item.key;
 
@@ -105,7 +106,7 @@ function Navigation({ toggleActivePopUp, active }) {
                     setOpenCategories(false); 
                   }
                 }}
-                className={`relative flex justify-between items-center h-[2.8rem] p-4 rounded-full cursor-pointer overflow-hidden
+                className={`group relative flex justify-between items-center h-[2.8rem] p-4 rounded-full cursor-pointer overflow-hidden
                   ${isActive ? "border bg-[#171717] border-[#242323]" : ""}`}
               >
                 {isActive && (
@@ -113,7 +114,7 @@ function Navigation({ toggleActivePopUp, active }) {
                 )}
 
                 <button className="flex items-center gap-2 z-10">
-                  <span className={`transition-colors duration-300 ${isActive ? "text-red-600" : "text-white"}`}>
+                  <span className={`transition-colors duration-300 group-hover:text-red-600 ${isActive ? "text-red-600" : "text-white"}`}>
                     {item.icon}
                   </span>
                   <h2 className="font-medium text-sm">{item.name}</h2>

@@ -1,53 +1,93 @@
-import { FiMenu, FiGrid, FiUser } from "react-icons/fi";
-import { IoIosSearch } from "react-icons/io";
-import { MdOutlineLiveTv } from "react-icons/md";
+import { TbChartBubble } from "react-icons/tb";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { BiCoinStack } from "react-icons/bi";
+import { HiOutlineTrophy } from "react-icons/hi2";
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
+function Footer() {
+  const footerLinks = [
+    {
+      title: "Company",
+      items: ["About Us", "News", "Resources", "Partners"],
+    },
+    {
+      title: "Support",
+      items: ["Ask a Question", "FAQ", "Privacy Policy", "Terms & Conditions"],
+    },
+  ];
 
-const items = [
-  { id: "menu", label: "Menu", Icon: FiMenu },
-  { id: "search", label: "Search", Icon: IoIosSearch },
-  { id: "catalog", label: "Catalog", Icon: FiGrid },
-  { id: "tv", label: "Online TV", Icon: MdOutlineLiveTv },
-  { id: "profile", label: "Profile", Icon: FiUser },
-];
+  const watchEarn = [
+    { key: "affiliate", name: "Affiliate", icon: <TbChartBubble size={20} />, color: "text-green-500" },
+    { key: "token", name: "Token", icon: <RiMoneyDollarCircleLine size={20} />, color: "text-red-500" },
+    { key: "invest", name: "Invest", icon: <BiCoinStack size={20} />, color: "text-blue-500" },
+    { key: "weekly", name: "Weekly Race", icon: <HiOutlineTrophy size={20} />, color: "text-purple-500" },
+  ];
 
-export default function Footer({toggleActivePopup, active}) {
+  const watchList = [
+    {
+      key: "explore",
+      items: ["Catalog", "Early Access", "Benefits", "Features"],
+    },
+  ];
 
   return (
-    <footer
-      className="fixed bottom-0 left-0 w-full md:hidden bg-[#08090A] border-t border-[#242323] z-40 font-sans"
-      style={{ paddingBottom: "env(safe-area-inset-bottom)", paddingTop: "0.5rem" }}
-      aria-label="Bottom navigation"
-    >
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="flex justify-between items-center">
-          {items.map(({ id, label, Icon }) => {
-            const isActive = id === active;
-            return (
-              <button
-                key={id}
-                onClick={() => toggleActivePopup(id)}
-                aria-label={label}
-                className="flex flex-col items-center justify-center w-full py-2"
-              >
-                <Icon
-                  size={24}
-                  className={`mb-1 transition-colors ${
-                    isActive ? "text-red-500" : "text-gray-400"
-                  }`}
-                />
-                <span
-                  className={`text-xs tracking-tight transition-colors ${
-                    isActive ? "text-white font-medium" : "text-gray-500"
-                  }`}
-                >
-                  {label}
-                </span>
-              </button>
-            );
-          })}
+    <footer className="bg-[#141414] mt-20 text-white py-10 px-6 md:px-10">
+      <div className="max-w-4xl ml-auto">
+        {/* Top Section */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+          {/* Company + Support Links */}
+          {footerLinks.map((section, index) => (
+            <div key={index} >
+              <h3 className="text-md font-semibold mb-4">{section.title}</h3>
+              <ul className="space-y-2 text-gray-400">
+                {section.items.map((item, idx) => (
+                  <li key={idx} className="hover:text-white cursor-pointer">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Watch & Earn */}
+          <div className="space-y-4 ">
+            <h3 className="text-md font-semibold mb-4">Watch & Earn</h3>
+
+            <div className="grid grid-cols-2 gap-6">
+              {/* Watch Earn Buttons */}
+              <div className="space-y-2">
+                {watchEarn.map((token) => (
+                  <button
+                    key={token.key}
+                    className="flex items-center text-gray-400 gap-2 hover:text-white transition"
+                  >
+                    <span className={token.color}>{token.icon}</span>
+                    <h2 className="font-medium text-sm">{token.name}</h2>
+                  </button>
+                ))}
+              </div>
+
+              {/* Watch List Links */}
+              <ul className="space-y-2 text-gray-400">
+                {watchList.map((list) =>
+                  list.items.map((item, idx) => (
+                    <li key={idx} className="hover:text-white cursor-pointer">
+                      {item}
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-xs">
+          © {new Date().getFullYear()} FlixEarn. All rights reserved.
         </div>
       </div>
     </footer>
   );
 }
+
+export default Footer;

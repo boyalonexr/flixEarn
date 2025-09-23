@@ -3,6 +3,7 @@ import Header from './Components/Header'
 import Navigation from './Components/Navigation'
 import Footer from './Components/Footer'
 import './App.css'
+import MobileNavBar from './Components/MobileNavBar'
 
 
 function App() {
@@ -20,10 +21,10 @@ function App() {
       active = {active}
      />
      <Navigation 
-      toggleActivePopup = {toggleActivePopup}
       active = {active}
      />
-     <Footer 
+     <Footer />
+     <MobileNavBar 
       toggleActivePopup = {toggleActivePopup}
       active = {active}
      />

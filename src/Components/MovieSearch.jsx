@@ -106,14 +106,14 @@ function MovieSearch({ toggleActive }) {
         transition={{ duration: 0.3, ease: "easeOut" }}
         viewport={{ once: true }}
         className="
-          fixed top-[10vh] z-20 md:mt-10 inset-0 -translate-x-1/2 
+          fixed top-20 z-9 md:mt-10 inset-0 -translate-x-1/2 border-t border-[#242323]
           bg-[#141414] text-white p-4 font-reddit md:rounded-xl shadow-lg
           max-w-[100%] sm:w-[85%] mx-auto md:w-[90%] lg:w-[55rem] overflow-hidden max-h-[80vh]
         "
       >
         <div>
           {/* Search + Genre Section */}
-          <section className="flex w-[100%] md:flex-row gap-2 border-b border-[#1f2e42] pb-4">
+          <section className="flex w-[100%] md:flex-row gap-2 border-b border-[#242323] pb-4">
             <div
               onClick={() => setActive(prev => !prev)}
               className="relative flex items-center rounded-full px-3 justify-between w-[40%] md:w-[25%] bg-[#1e1f21]"

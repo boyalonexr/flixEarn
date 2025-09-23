@@ -61,7 +61,7 @@ function Wallet({ toogleActive }) {
         exit={{ opacity: 0, y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="fixed left-0 top-5 right-0 bg-[#141414] z-10 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-md"
+        className="fixed left-0 -top-3 right-0 bg-[#141414] z-50 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-md"
       >
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl">Wallet</h1>
@@ -150,7 +150,7 @@ function Wallet({ toogleActive }) {
               </div>
 
               {open === "currency" && (
-                <div className="absolute top-1/4 -mt-1 max-h-[11rem] w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
+                <div className="absolute top-1/4 -mt-1 max-h-[11rem] w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
                   {cryptoOptions.map((crypto, index) => (
                     <button
                       onClick={() => {
@@ -191,6 +191,7 @@ function Wallet({ toogleActive }) {
           {/* ====================== WITHDRAW ====================== */}
            {activeWallet === "withdraw" && (
             <div className="transition-all duration-300 animate-fade-in">
+              <div className="max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent pr-1">
                 <p>Currency <span className="text-red-500">*</span></p>
 
               <button 
@@ -213,9 +214,9 @@ function Wallet({ toogleActive }) {
                     <span className="text-red-500"> *</span></label>
                   <input className="w-full h-11 rounded-full focus:ring-1 focus:ring-red-500 focus:outline-none  bg-[#1e1f21] transition-all duration-500 px-4" type="text" id="input1" name="input1" required />
 
-                  <label className="block pb-2 mt-3" for="input2">Amount 
+                  <label className="relative block pb-2 mt-3" for="input2">Amount 
                     <span className="text-red-500"> *</span>
-                    <span className="absolute right-0">{selected.amount}</span>
+                    <span className="absolute right-2">{selected.amount}</span>
                   </label>
 
                   <div className="flex relative">
@@ -247,7 +248,7 @@ function Wallet({ toogleActive }) {
 
 
               {open === 'currency' && 
-              <div className="absolute top-1/4 -mt-5 max-h-40 w-full bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
+              <div className="absolute top-1/4 -mt-4 max-h-40 w-[95%] bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
                   { cryptoOptions.map(( crypto, index) =>(<button 
                     onClick={()=> {
                       setSelected(crypto)
@@ -264,6 +265,8 @@ function Wallet({ toogleActive }) {
                   </button>))}
               </div>}
             </div>
+
+              </div>
           )} 
 
           {/* ====================== BUY CRYPTO (FIXED) ====================== */}
@@ -340,7 +343,7 @@ function Wallet({ toogleActive }) {
 
               {/* Dropdown for Buy */}
               {open === "buyCurrency" && (
-                <div className="absolute bottom-0 right-0 max-h-40 w-1/3 bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
+                <div className="absolute bottom-0 right-0 max-h-40 w-1/3 bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
                   {cryptoOptions.map((crypto, index) => (
                     <button
                       key={index}
@@ -359,7 +362,7 @@ function Wallet({ toogleActive }) {
 
               {/* Dropdown for Pay */}
               {open === "payCurrency" && (
-                <div className="absolute top-3/4 -mt-4 right-0 max-h-40 w-1/3 bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
+                <div className="absolute top-3/4 -mt-4 right-0 max-h-40 w-1/3 bg-[#141414] border overflow-y-scroll scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-transparent border-zinc-700 rounded-xl text-white custom-scrollbar py-2 px-3">
                   {cryptoOptions.map((crypto, index) => (
                     <button
                       key={index}

@@ -18,6 +18,7 @@ import Wallet from './Wallet'
 
 function Header({toggleActivePopup, active}) {
   const [ balance, setBalance ] = useState(balanceOptions[13])
+  const [ activeUser, setActiveUser ] = useState('')
 
   const userData = [
     { label: 'Profile', icon: <CgProfile /> },
@@ -30,20 +31,20 @@ function Header({toggleActivePopup, active}) {
 
   return (
     <>
-    <header className='fixed top-0 z-40 w-full border-b border-[#242323]  bg-[#141414] px-4 md:px-8'>
+    <header className='fixed border top-0 z-40 w-full border-b border-[#242323]  bg-[#141414] px-4 md:px-8'>
       <div className="flex max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto justify-between items-center">
         <div className="flex items-center w-full">
-          <div className="w-[30%] h-20 flex justify-start x12:border-r border-[#1f2e42] items-center ">
+          <div className="w-[30%] cursor-pointer h-20 flex justify-start x12:border-r border-[#242323] items-center ">
             <h1 className='text-white text-3xl font-bold font-reddit'>Flix
               <span className='text-red-500'>Earn</span></h1>
           </div>
 
           <div 
             onClick={() => toggleActivePopup("search")}
-            className="relative mx-6 hidden lg:block">
-              <IoMdSearch className="absolute top-3 left-3 text-2xl text-[#78797b]" />
+            className="group relative mx-6 hidden lg:block">
+              <IoMdSearch className="absolute top-3 left-3 text-2xl transition-colors duration-500 group-hover:text-red-500 text-[#78797b]" />
               <input
-                className='p-3 pl-10 px-4 w-full bg-[#1e1f21] text-white text-base focus:outline-none rounded-full' type="text" 
+                className='p-3 pl-10 px-4 w-full bg-[#1e1f21] cursor-pointer text-white text-base focus:outline-none rounded-full' type="text" 
                 name="search" 
                 id="search"
                 placeholder='Search'
@@ -53,7 +54,7 @@ function Header({toggleActivePopup, active}) {
         <div className="relative hidden x12:block">
           <button 
             onClick={() => toggleActivePopup("login")}
-            className={`p-3 rounded-full z-10 bg-[#1e1f21]
+            className={`p-3 rounded-full z-10 hover:text-red-500 bg-[#1e1f21]
                         transition-colors duration-500
                         ${active === 'login' 
                           ? 'text-red-500' 
@@ -102,14 +103,14 @@ function Header({toggleActivePopup, active}) {
              
              <div 
                 onClick={() => toggleActivePopup("balance")}
-                className="bg-[#1e1f21] font-semibold hidden md:block z-10 p-2 md:p-3 rounded-full text-white w-[15rem]">
+                className="bg-[#1e1f21] font-semibold hidden md:block group z-10 p-2 md:p-3 rounded-full text-white w-[15rem]">
                 <button className="flex items-center gap-4 w-full">
                   <div className="flex items-center">
                     <img className="mx-3 w-[1.5rem]" src={balance.icon} alt="" />
                     <p className="text-base pr-3 w-20">{balance.amount}</p>
                   </div>
 
-                  <RiArrowDropDownLine className={`${active === 'balance' ? 'text-red-500' : ''}`} />
+                  <RiArrowDropDownLine className={`${active === 'balance' ? 'text-red-500' : 'group-hover:text-red-500 transition-colors duration-500'}`} />
                 </button>
               </div>
                 
@@ -217,7 +218,7 @@ function Header({toggleActivePopup, active}) {
                   ))}
 
                   <div 
-                    onClick={()=> toggleActive(false)}
+                    onClick={()=> toggleActivePopup(false)}
                     className="text-center font-medium uppercase border-t pt-2 transition-colors duration-500 hover:text-red-500 cursor-pointer"
                   >
                     Clear All
@@ -250,12 +251,14 @@ function Header({toggleActivePopup, active}) {
               <div className="absolute -right-2 bg-[#141414] text-white w-40 rounded-xl border border-gray-800 p-4 pt-6">
 
                 <ul>
-                  {userData.map((data, index) => (
+                  {userData.map((data) => (
                     <li
-                      key={index}
-                      className="flex gap-2 items-center text-sm font-semibold py-1 pb-2 cursor-pointer hover:bg-[#222]"
+                      key={data.label}
+                      onClick={()=> setActiveUser(data.label)}
+                      className="group flex justify-start gap-2 items-center text-sm font-semibold py-1 pb-2 cursor-pointer"
                     >
-                      <span className="text-[#81858c] text-lg">
+                      <span className={`text-lg transition-all duration-500 group-hover:text-red-500
+                       ${ activeUser === data.label ? 'text-red-500' : 'text-[#81858c]'} `}>
                         {data.icon}</span>
                       {data.label}
                     </li>
