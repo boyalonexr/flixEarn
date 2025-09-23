@@ -88,7 +88,7 @@ function Navigation({ active }) {
         ${active === "menu" ? "translate-x-0" : "-translate-x-full"} 
           x12:translate-x-0`}
     >
-      <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 my-2 pb-8 pt-4 scrollbar-track-transparent max-h-[80vh]">
+      <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 my-2 pb-8 pt-4 scrollbar-track-transparent max-h-[40rem]">
         {navItems.map((item, index) => {
           const isActive = activeItem === item.key;
 
