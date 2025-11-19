@@ -31,7 +31,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="bg-[#141414] mt-20 text-white py-10 px-6 md:px-10">
+    <footer className="bg-[#141414] text-white mb-20 py-10 px-4 md:px-8 md:max-w-[78%] ml-auto">
       <div className="max-w-4xl ml-auto">
         {/* Top Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
@@ -49,36 +49,34 @@ function Footer() {
             </div>
           ))}
 
-          {/* Watch & Earn */}
-          <div className="space-y-4 ">
-            <h3 className="text-md font-semibold mb-4">Watch & Earn</h3>
+         <div className="space-y-4 w-full">
+  <h3 className="text-md font-semibold mb-4">Watch & Earn</h3>
 
-            <div className="grid grid-cols-2 gap-6">
-              {/* Watch Earn Buttons */}
-              <div className="space-y-2">
-                {watchEarn.map((token) => (
-                  <button
-                    key={token.key}
-                    className="flex items-center text-gray-400 gap-2 hover:text-white transition"
-                  >
-                    <span className={token.color}>{token.icon}</span>
-                    <h2 className="font-medium text-sm">{token.name}</h2>
-                  </button>
-                ))}
-              </div>
+  <div className="grid grid-cols-2 gap-6">
+    {/* Watch Earn Buttons */}
+    <div className="space-y-2">
+      {watchEarn.map((token) => (
+        <button
+          key={token.key}
+          className="flex items-center text-gray-400 gap-2 hover:text-white transition"
+        >
+          <span className={token.color}>{token.icon}</span>
+          <h2 className="font-medium text-sm">{token.name}</h2>
+        </button>
+      ))}
+    </div>
 
-              {/* Watch List Links */}
-              <ul className="space-y-2 text-gray-400">
-                {watchList.map((list) =>
-                  list.items.map((item, idx) => (
-                    <li key={idx} className="hover:text-white cursor-pointer">
-                      {item}
-                    </li>
-                  ))
-                )}
-              </ul>
-            </div>
-          </div>
+    {/* Watch List Links */}
+    <ul className="space-y-2 text-gray-400">
+      {watchList[0].items.map((item, idx) => (
+        <li key={idx} className="hover:text-white cursor-pointer">
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
         </div>
 
         {/* Footer Bottom */}

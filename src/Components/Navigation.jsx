@@ -83,12 +83,12 @@ function Navigation({ active }) {
 
   return (
     <nav
-      className={`bg-[#141414] text-white h-screen w-full fixed x12:w-[22%] top-20 left-0 z-20 px-4
+      className={`bg-[#141414] text-white h-screen w-full fixed x12:w-[22%] left-0 z-20 px-4
         transform border-r border-[#242323] transition-transform duration-500 ease-in-out
         ${active === "menu" ? "translate-x-0" : "-translate-x-full"} 
           x12:translate-x-0`}
     >
-      <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 my-2 pb-8 pt-4 scrollbar-track-transparent max-h-[40rem]">
+      <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 my-2 pb-8 pt-4 scrollbar-track-transparent max-h-[35rem]">
         {navItems.map((item, index) => {
           const isActive = activeItem === item.key;
 

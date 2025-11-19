@@ -103,7 +103,9 @@ function Header({toggleActivePopup, active}) {
              
              <div 
                 onClick={() => toggleActivePopup("balance")}
-                className="bg-[#1e1f21] font-semibold hidden md:block group z-10 p-2 md:p-3 rounded-full text-white w-[15rem]">
+                className={`bg-[#1e1f21] font-semibold hidden md:block group p-2 md:p-3 rounded-full text-white w-[15rem]
+                ${ active === "wallet" ? 'z-20' : 'z-10'}
+                `}>
                 <button className="flex items-center gap-4 w-full">
                   <div className="flex items-center">
                     <img className="mx-3 w-[1.5rem]" src={balance.icon} alt="" />
@@ -116,7 +118,10 @@ function Header({toggleActivePopup, active}) {
                 
                 <button 
                 onClick={() => toggleActivePopup("wallet")}
-                className="absolute z-10 top-0 right-0 bg-green-500 p-2 md:p-3 rounded-full md:rounded-none md:rounded-r-full">
+                className={`absolute top-0 right-0 bg-green-500 p-2 md:p-3 rounded-full md:rounded-none md:rounded-r-full
+                 ${ active === "wallet" ? 'z-20' : 'z-10'}
+                `}
+                >
                   <LuWallet />
                 </button>
 
@@ -186,7 +191,7 @@ function Header({toggleActivePopup, active}) {
           <div className="relative">
             <button 
             onClick={() => toggleActivePopup("notify")}
-            className={`relative z-10 p-2 md:p-3 md:mx-2 rounded-full 
+            className={`relative z-8 p-2 md:p-3 md:mx-2 rounded-full 
                         hover:bg-red-500 hover:text-white 
                         transition-colors duration-500
                         ${active === 'notify' 

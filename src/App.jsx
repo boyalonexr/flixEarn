@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './Components/Header'
 import Navigation from './Components/Navigation'
+import Hero from './Components/Hero'
 import Footer from './Components/Footer'
 import './App.css'
 import MobileNavBar from './Components/MobileNavBar'
@@ -23,6 +24,7 @@ function App() {
      <Navigation 
       active = {active}
      />
+     <Hero />
      <Footer />
      <MobileNavBar 
       toggleActivePopup = {toggleActivePopup}

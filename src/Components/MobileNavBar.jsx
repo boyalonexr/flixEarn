@@ -1,21 +1,38 @@
 import { FiMenu, FiGrid, FiUser } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
-import { MdOutlineLiveTv } from "react-icons/md";
-
+import { RiSignalTowerLine } from "react-icons/ri";
+import { useState, useEffect } from "react";
 
 const items = [
   { id: "menu", label: "Menu", Icon: FiMenu },
   { id: "search", label: "Search", Icon: IoIosSearch },
   { id: "catalog", label: "Catalog", Icon: FiGrid },
-  { id: "tv", label: "Online TV", Icon: MdOutlineLiveTv },
+  { id: "tv", label: "Online TV", Icon: RiSignalTowerLine },
   { id: "profile", label: "Profile", Icon: FiUser },
 ];
 
 export default function MobileNavBar({toggleActivePopup, active}) {
+const [keyboardOpen, setKeyboardOpen] = useState(false);
+
+    useEffect(() => {
+      const handleResize = () => {
+        const height = window.innerHeight;
+        const fullHeight = window.outerHeight;
+
+        setKeyboardOpen(fullHeight - height > 150);
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
   return (
     <footer
-      className="fixed bottom-0 left-0 w-full md:hidden bg-[#08090A] border-t border-[#242323] z-30 font-sans"
+      className={`fixed bottom-0 left-0 w-full md:hidden bg-[#08090A] border-t border-[#242323] z-40 font-sans
+         ${
+  keyboardOpen ? "translate-y-full" : "translate-y-0"
+}
+      `}
       style={{ paddingBottom: "env(safe-area-inset-bottom)", paddingTop: "0.5rem" }}
       aria-label="Bottom navigation"
     >
@@ -28,18 +45,16 @@ export default function MobileNavBar({toggleActivePopup, active}) {
                 key={id}
                 onClick={() => toggleActivePopup(id)}
                 aria-label={label}
-                className="flex flex-col items-center justify-center w-full py-2"
+                className="flex flex-col items-center justify-center w-full pt-1 pb-2"
               >
                 <Icon
-                  size={24}
-                  className={`mb-1 transition-colors ${
-                    isActive ? "text-red-500" : "text-gray-400"
+                  size={20}
+                  className={`mb-2 transition-colors ${
+                    isActive ? "text-red-500" : "text-gray-500"
                   }`}
                 />
                 <span
-                  className={`text-xs tracking-tight transition-colors ${
-                    isActive ? "text-white font-medium" : "text-gray-500"
-                  }`}
+                  className="text-xs tracking-tight transition-colors font-bold text-gray-300"
                 >
                   {label}
                 </span>

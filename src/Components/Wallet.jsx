@@ -52,7 +52,7 @@ function Wallet({ toogleActive }) {
     <>
       <div 
       onClick={()=> toogleActive(false)}
-      className="fixed inset-0 bg-black/80 z-1" />
+      className="fixed inset-0 bg-black/80 z-10" />
 
       <motion.div
         key="wallet"

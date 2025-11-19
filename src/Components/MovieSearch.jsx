@@ -106,9 +106,9 @@ function MovieSearch({ toggleActive }) {
         transition={{ duration: 0.3, ease: "easeOut" }}
         viewport={{ once: true }}
         className="
-          fixed top-20 z-9 md:mt-10 inset-0 -translate-x-1/2 border-t border-[#242323]
+          fixed border top-20 z-20 inset-0 -translate-x-1/2 border-t border-[#242323]
           bg-[#141414] text-white p-4 font-reddit md:rounded-xl shadow-lg
-          max-w-[100%] sm:w-[85%] mx-auto md:w-[90%] lg:w-[55rem] overflow-hidden max-h-[80vh]
+          max-w-[100%] mx-auto md:w-[90%] lg:w-[85%] overflow-hidden max-h-[80vh]
         "
       >
         <div>
@@ -173,7 +173,7 @@ function MovieSearch({ toggleActive }) {
           </section>
 
           {/* Movies Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 scrollbar-track-transparent max-h-[65vh] py-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-red-900 scrollbar-track-transparent max-h-[65vh] py-4">
             {moviesData.map((movie) => (
               <VideoCard
                 key={movie.id}
