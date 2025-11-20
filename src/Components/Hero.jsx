@@ -1,12 +1,4 @@
 import { useState, useRef } from "react";
-import { Cloudinary } from "@cloudinary/url-gen";
-const cld = new Cloudinary({
-  cloud: { cloudName: "dmg0ohw7r" }
-});
-
-import heroImg1 from '../assets/hero-imgs/bg-1.jpg'
-import heroImg2 from '../assets/hero-imgs/bg-2.jpg'
-import heroImg3 from '../assets/hero-imgs/bg-3.jpg'
 import icon from '../assets/currencies/flixcoin.svg'
 import { FaRegBookmark } from "react-icons/fa6";
 
@@ -20,7 +12,7 @@ function Hero() {
       genres: ["Action", "Drama", "Comedy"],
       mine: "+0.005",
       color: "yellow-500",
-      img: "https://res.cloudinary.com/dmg0ohw7r/image/upload/v1763622856/bg-1_zvr57l.jpg",
+      img: "https://res.cloudinary.com/dmg0ohw7r/image/upload/f_auto,q_auto,w_1920/v1763622856/bg-1_zvr57l.jpg",
     },
     {
       title: "From the Side",
@@ -29,7 +21,7 @@ function Hero() {
       genres: ["Adventure", "Thriller"],
       mine: "+0.002",
       color: "white",
-      img: heroImg2,
+      img: "https://res.cloudinary.com/dmg0ohw7r/image/upload/f_auto,q_auto,w_1920/v1763622855/bg-2_l7ybjq.jpg",
     },
     {
       title: "Lost Horizon",
@@ -38,7 +30,7 @@ function Hero() {
       genres: ["Adventure", "Fantasy"],
       mine: "+0.002",
       color: "yellow-500",
-      img: heroImg3,
+      img: "https://res.cloudinary.com/dmg0ohw7r/image/upload/f_auto,q_auto,w_1920/v1763622862/bg-3_n928rw.jpg",
     }
   ];
 
