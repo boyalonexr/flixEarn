@@ -97,7 +97,7 @@ function Hero() {
 
 
   return (
-    <main className="relative mt-20 md:max-w-[78%] w-full overflow-hidden ml-auto select-none">
+    <main className="relative mt-20 x12:max-w-[78%] w-full overflow-hidden ml-auto select-none">
 
       {/* TRACK WRAPPER WITH DRAG EVENTS */}
       <div
@@ -116,7 +116,7 @@ function Hero() {
         {heroSlides.map((slide, i) => (
           <div
             key={i}
-            className='relative flex items-center w-full flex-shrink-0 bg-[#141414] text-white bg-cover bg-center px-4 sm:px-14 md:px-8'
+            className='relative flex items-center w-full flex-shrink-0 bg-[#141414] text-white bg-cover bg-center px-4 sm:px-12 md:px-8'
             style={{ backgroundImage: `url(${slide.img})` }}
           >
             <div className='absolute inset-0 bg-black/60' />

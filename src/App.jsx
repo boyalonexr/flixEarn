@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './Components/Header'
 import Navigation from './Components/Navigation'
 import Hero from './Components/Hero'
+import Section1 from './Section1'
 import Footer from './Components/Footer'
 import './App.css'
 import MobileNavBar from './Components/MobileNavBar'
@@ -25,6 +26,7 @@ function App() {
       active = {active}
      />
      <Hero />
+     <Section1 />
      <Footer />
      <MobileNavBar 
       toggleActivePopup = {toggleActivePopup}

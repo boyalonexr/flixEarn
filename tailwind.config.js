@@ -14,6 +14,7 @@ export default {
       },
        fontFamily: {
         reddit: ['Poppins', 'ui-sans-serif', 'system-ui', 'Reddit Sans', 'sans-serif'],
+        reddit2: ['Reddit Sans', 'sans-serif'],
       },
       colors: {
         // adjust HEX to match exact design
