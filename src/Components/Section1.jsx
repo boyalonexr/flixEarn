@@ -65,47 +65,67 @@ function Section1() {
   'weekly race': 'group-hover:text-purple-500',
 };
 
-
+  const scrollRefEarly = useRef(null);
+  const scrollRefActual = useRef(null);
+  const scrollRefFarm = useRef(null);
   const [activeCard, setActiveCard] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
-  const scrollRef = useRef(null);
+  
+  const prevEarly = () => scrollRefEarly.current.scrollBy({ left: -600, behavior: "smooth" });
+  const nextEarly = () => scrollRefEarly.current.scrollBy({ left: 600, behavior: "smooth" });
 
-  const prevSlide = () => {
-    scrollRef.current.scrollBy({ left: -600, behavior: "smooth" });
+  const prevActual = () => scrollRefActual.current.scrollBy({ left: -600, behavior: "smooth" });
+  const nextActual = () => scrollRefActual.current.scrollBy({ left: 600, behavior: "smooth" });
+
+  const prevFarm = () => scrollRefFarm.current.scrollBy({ left: -600, behavior: "smooth" });
+  const nextFarm = () => scrollRefFarm.current.scrollBy({ left: 600, behavior: "smooth" });
+
+  
+    // --- get random subset helper ---
+  function getRandomMovies(count) {
+    const shuffled = [...moviesData].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
   }
 
-  const nextSlide = () => {
-    scrollRef.current.scrollBy({ left: 600, behavior: "smooth"});
-  }
+  // --- create 3 completely independent random lists ---
+  const [earlyMovies] = useState(() => getRandomMovies(moviesData.length));
+  const [actualMovies] = useState(() => getRandomMovies(moviesData.length));
+  const [farmingMovies] = useState(() => getRandomMovies(moviesData.length));
+
 
   return (
     <div className="text-white bg-[#141414] p-4 md:px-8 max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-[78%] mx-auto x12:ml-auto x12:mr-0 mt-12">
-      {/* Section Title + Arrows */}
+      {/* Section: Early Access */}
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-reddit2 font-medium">
           Early Access
         </h2>
         <div className="flex items-center gap-3">
+          <button
+            className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
+          >
+            <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
+          </button>
           <button 
-            onClick={prevSlide}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] transition duration-500">
+            onClick={prevEarly}
+            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
               <IoIosArrowBack />
           </button>
           <button 
-            onClick={nextSlide}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] transition duration-500">
+            onClick={nextEarly}
+            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
            <IoIosArrowForward />
           </button>
         </div>
       </div>
 
-      {/* Movies Grid */}
+      {/* Early Access Movies Grid */}
       <div 
-        ref={scrollRef}
+        ref={scrollRefEarly}
         className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
       >
         <div className="flex gap-4 py-4">
-          {moviesData.map((movie) => (
+          {earlyMovies.map((movie) => (
             <div key={movie.id} className="snap-start">
               <VideoCard
                 {...movie}
@@ -161,6 +181,92 @@ function Section1() {
           </div>
         ))}
       </div>
+
+      {/* Section: Actual */}
+       <div className="flex mt-12 items-center justify-between">
+        <h2 className="text-3xl font-reddit2 font-medium">
+          Actual
+        </h2>
+        <div className="flex items-center gap-3">
+          <button
+            className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
+          >
+            <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
+          </button>
+          <button 
+            onClick={prevActual}
+            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+              <IoIosArrowBack />
+          </button>
+          <button 
+            onClick={nextActual}
+            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+           <IoIosArrowForward />
+          </button>
+        </div>
+      </div>
+
+      {/* Actual Movies Grid */}
+      <div 
+        ref={scrollRefActual}
+        className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
+      >
+        <div className="flex gap-4 py-4">
+          {actualMovies.map((movie) => (
+            <div key={movie.id} className="snap-start">
+              <VideoCard
+                {...movie}
+                isActive={activeCard === movie.id}
+                onClick={() => setActiveCard(movie.id)}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Section: Profitable Farming */}
+
+       <div className="flex mt-12 items-center justify-between">
+        <h2 className="text-3xl font-reddit2 font-medium">
+          Profitable Farming
+        </h2>
+        <div className="flex items-center gap-3">
+          <button
+            className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
+          >
+            <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
+          </button>
+          <button 
+            onClick={prevFarm}
+            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+              <IoIosArrowBack />
+          </button>
+          <button 
+            onClick={nextFarm}
+            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+           <IoIosArrowForward />
+          </button>
+        </div>
+      </div>
+
+      {/* Profitable Farming Movies Grid */}
+      <div 
+        ref={scrollRefFarm}
+        className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
+      >
+        <div className="flex gap-4 py-4">
+          {farmingMovies.map((movie) => (
+            <div key={movie.id} className="snap-start">
+              <VideoCard
+                {...movie}
+                isActive={activeCard === movie.id}
+                onClick={() => setActiveCard(movie.id)}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }

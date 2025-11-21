@@ -61,7 +61,7 @@ function Wallet({ toogleActive }) {
         exit={{ opacity: 0, y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="fixed left-0 -top-3 right-0 bg-[#141414] z-50 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-md"
+        className="fixed left-0 -top-3 md:top-[15%] lg:-top-4 right-0 bg-[#141414] z-50 text-white p-6 font-reddit rounded-xl shadow-lg w-[95%] mx-auto max-w-md"
       >
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl">Wallet</h1>
@@ -237,7 +237,7 @@ function Wallet({ toogleActive }) {
                     type="submit"
                     className="relative overflow-hidden px-8 py-3 bg-[#a0bffe] rounded-full text-black group w-2/4"
                   >
-                    <span className="relative z-10 uppercase">Withdrawal</span>
+                    <span className="relative z-10 uppercase">Withdraw</span>
 
                     <span
                       className="absolute inset-0 bg-red-500 opacity-2 rounded-full transform scale-x-0 origin-center transition-transform duration-500 ease-out group-hover:scale-x-100"

@@ -16,8 +16,8 @@ import { AiOutlineFire } from "react-icons/ai";
 }) => {
   return (
     <div
-      className="flex flex-shrink-0 w-[11.5rem] ch:w-[145px] md:w-[160px] lg:w-[195px] x12:w-[170px] flex-col cursor-pointer"
-      onClick={onClick} // mobile tap activation
+      className="flex flex-shrink-0 w-[10rem] lg:w-[170px] flex-col cursor-pointer"
+      onClick={onClick}
     >
       <div className="relative h-60 w-full rounded-xl overflow-hidden">
 
@@ -42,9 +42,9 @@ import { AiOutlineFire } from "react-icons/ai";
 
           {/* Play button */}
            <div className='relative group z-10'>
-            <div className="flex justify-center items-center w-16 h-16 rounded-full bg-white/30 group-hover:bg-red-600/20 backdrop-blur-sm">
+            <div className="flex justify-center group-hover:transition-all duration-500 items-center w-16 h-16 rounded-full bg-white/30 group-hover:bg-red-600/20 backdrop-blur-sm">
               <div className="bg-black w-12 h-12 rounded-full flex justify-center items-center">
-                <IoPlayOutline className="text-white/50 group-hover:text-red-500 text-3xl" />
+                <IoPlayOutline className="text-white/50 group-hover:transition-all duration-500 group-hover:text-red-500 text-3xl" />
               </div>
             </div>
            </div>

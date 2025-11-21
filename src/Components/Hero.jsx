@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import icon from '../assets/currencies/flixcoin.svg';
+import flix from '../assets/currencies/flixcoin.svg'
+import btc from '../assets/currencies/btc.svg'
+import usdt from '../assets/currencies/usdt.svg'
+
 import { FaRegBookmark } from "react-icons/fa6";
 
 function Hero() {
@@ -7,33 +11,40 @@ function Hero() {
     {
       title: "Savage Beauty",
       rating: 9.8,
-      desc: "A brilliant scientist discovers a way...",
+      desc: "A brilliant scientist discovers a way to harness the power of the ocean's currents to create a new, renewable energy source. But when her groundbreaking technology falls into the wrong hands, she must race against time to stop it from being used for evil.",
       genres: ["Action", "Drama", "Comedy"],
       mine: "+0.005",
+      mineCoin: "BTC",
       color: "yellow-500",
       img: "https://res.cloudinary.com/dmg0ohw7r/image/upload/f_auto,q_auto,w_1920/v1763622856/bg-1_zvr57l.jpg",
+      icon: btc
     },
     {
       title: "From the Side",
       rating: 7.1,
-      desc: "In a world where magic is outlawed...",
+      desc: "In a world where magic is outlawed and hunted, a young witch must use her powers to fight back against the corrupt authorities who seek to destroy her kind.",
       genres: ["Adventure", "Thriller"],
       mine: "+0.002",
+      mineCoin: "FXC",
       color: "white",
       img: "https://res.cloudinary.com/dmg0ohw7r/image/upload/f_auto,q_auto,w_1920/v1763622855/bg-2_l7ybjq.jpg",
+      icon: flix
     },
     {
       title: "Lost Horizon",
       rating: 6.2,
-      desc: "When a renowned archaeologist goes missing...",
-      genres: ["Adventure", "Fantasy"],
+      desc: "When a renowned archaeologist goes missing, his daughter sets out on a perilous journey to the heart of the Amazon rainforest to find him. Along the way, she discovers a hidden city and a dangerous conspiracy that threatens the very balance of power in the world.",
+      genres: ["Action", "Drama", "Thriller"],
       mine: "+0.002",
+      mineCoin: "USDT",
       color: "yellow-500",
       img: "https://res.cloudinary.com/dmg0ohw7r/image/upload/f_auto,q_auto,w_1920/v1763622862/bg-3_n928rw.jpg",
+      icon: usdt
     }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showIcon, setShowIcon] = useState(false);
   const scrollRef = useRef(null)
 
   useEffect(() => {
@@ -83,33 +94,45 @@ function Hero() {
                 </span>
               </div>
 
-              <p className="mt-2 max-w-[90%] text-sm text-gray-300 leading-relaxed">
+              <p className="mt-2 max-w-[420px] font-semibold text-[14px] text-gray-300 leading-relaxed">
                 {slide.desc}
               </p>
 
               <div className="flex gap-3">
                 {slide.genres.map((g, idx) => (
-                  <p key={idx} className="text-[#b9cbe3] hover:text-red-500 transition-colors">
+                  <p 
+                    key={idx} 
+                    className="text-[#b9cbe3] hover:text-red-500 transition-colors">
                     <a href="#">{g}{idx < slide.genres.length - 1 && ','}</a>
                   </p>
                 ))}
-              </div>
+              </div> 
 
-              {/* Mining Badge */}
-              <div className="relative flex justify-between items-center p-2 w-1/2 rounded-full bg-[#1e1f21]">
-                <div className="flex items-center gap-2">
-                  <img className="w-5 h-5" src={icon} alt="" />
+              {/* FXC */}
+              <div
+                onMouseEnter={() => setShowIcon(true)}
+                onMouseLeave={() => setShowIcon(false)}
+                className='relative flex justify-between items-center p-1.5 w-[220px] cursor-default rounded-full bg-[#1e1f21]'
+              >
+                <div className='flex items-center gap-2'>
+                  <img className='w-5 h-5' src={slide.icon} alt={slide.mineCoin} />
                   <p className='text-gray-400'>
                     <span className='text-green-500'>{slide.mine}</span>/min
                   </p>
                 </div>
 
-                <span className="p-0.5 rounded-full mr-2 bg-[#b9cbe3]/40" />
+                <span className={`p-0.5 transition-all duration-500 rounded-full mr-2 ${showIcon ? "bg-[#b9cbe3]" : "bg-[#b9cbe3]/40"}`}></span>
+
+                {showIcon && (
+                  <div className='absolute border border-[#b9cbe3] bottom-10 left-7 p-1 rounded-md bg-[#b9cbe3] after:content-[""] after:absolute after:top-full after:left-1/2 after:translate-x-1/2 after:border-8 after:border-transparent after:border-t-[#b9cbe3]'>
+                    <p className='text-xs font-semibold text-black'>You earn {slide.mineCoin} per min</p>
+                  </div>
+                )}
               </div>
 
               {/* Buttons */}
               <div className="flex items-center gap-3 mt-4">
-                <button className="w-[11rem] py-3 rounded-full bg-[#b9cbe3] text-black font-medium">
+                <button className="w-[11rem] py-3 rounded-full bg-[#b9cbe3] hover:bg-red-500 hover:text-white transition-colors duration-500 text-black text-[14px] uppercase font-medium">
                   Watch Now
                 </button>
 

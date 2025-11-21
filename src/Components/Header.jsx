@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LuWallet } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { BiNotification } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -197,7 +197,7 @@ function Header({toggleActivePopup, active}) {
                         ${active === 'notify' 
                           ? 'bg-red-500 text-white' 
                           : 'bg-[#b9cbe3]'}`}>
-              <IoMdNotificationsOutline />
+              <BiNotification />
             
               <span className="absolute -top-1 -right-1 w-5 h-5  bg-red-500 text-white text-xs flex justify-center items-center rounded-full">{notification.length}</span>
             </button>

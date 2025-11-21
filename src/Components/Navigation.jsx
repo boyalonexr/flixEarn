@@ -4,11 +4,11 @@ import {
   RiHome2Line,
   RiArrowDropDownLine,
   RiMoneyDollarCircleLine,
-  RiCustomerService2Line
+  RiCustomerService2Line,
+  RiSignalTowerLine
  } from "react-icons/ri";
 
 import { 
-  MdLiveTv, 
   MdOutlineLocalMovies, 
   MdPlaylistAddCheck,
   MdOutlinePrivacyTip 
@@ -62,7 +62,7 @@ function Navigation({ active }) {
     { key: "home", name: "Home", icon: <RiHome2Line size={20} /> },
     { key: "movies", name: "Movies", icon: <MdOutlineLocalMovies size={20} />, count: 25974 },
     { key: "tv-series", name: "TV Series", icon: <FaTv size={20} />, count: 7208 },
-    { key: "online-tv", name: "Online TV", icon: <MdLiveTv size={20} /> },
+    { key: "online-tv", name: "Online TV", icon: <RiSignalTowerLine size={20} /> },
     { key: "categories", name: "Categories", icon: <FiGrid size={20} />, dropdown: true },
     { key: "watchlist", name: "Watchlist", icon: <MdPlaylistAddCheck size={20} />, count: 38 },
     { key: "affiliate", name: "Affiliate", icon: <TbChartBubble size={20} /> },
