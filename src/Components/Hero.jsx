@@ -70,7 +70,7 @@ function Hero() {
       {/* Scroll Snap Wrapper */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar h-[55vh] md:h-[50vh] x12:h-[90vh]"
+        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar h-[32rem]"
       >
         {heroSlides.map((slide, i) => (
           <div
@@ -94,7 +94,7 @@ function Hero() {
                 </span>
               </div>
 
-              <p className="mt-2 max-w-[420px] font-semibold text-[14px] text-gray-300 leading-relaxed">
+              <p className="mt-2 max-w-[60%] md:max-w-[420px] font-semibold text-[14px] text-gray-300 leading-relaxed">
                 {slide.desc}
               </p>
 

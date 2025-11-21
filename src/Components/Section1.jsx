@@ -94,9 +94,9 @@ function Section1() {
 
 
   return (
-    <div className="text-white bg-[#141414] p-4 md:px-8 max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-[78%] mx-auto x12:ml-auto x12:mr-0 mt-12">
+    <div className="text-white bg-[#141414] p-4 md:px-8 max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-[78%] mx-auto x12:ml-auto x12:mr-0 mt-6">
       {/* Section: Early Access */}
-      <div className="flex items-center justify-between">
+      <div className=" relative flex items-center justify-between">
         <h2 className="text-3xl font-reddit2 font-medium">
           Early Access
         </h2>

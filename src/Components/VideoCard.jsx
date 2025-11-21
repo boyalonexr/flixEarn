@@ -16,7 +16,7 @@ import { AiOutlineFire } from "react-icons/ai";
 }) => {
   return (
     <div
-      className="flex flex-shrink-0 w-[10rem] lg:w-[170px] flex-col cursor-pointer"
+      className="flex flex-shrink-0 w-[10rem] sm:w-[220px] lg:w-[200px] x12:w-[170px] flex-col cursor-pointer"
       onClick={onClick}
     >
       <div className="relative h-60 w-full rounded-xl overflow-hidden">
