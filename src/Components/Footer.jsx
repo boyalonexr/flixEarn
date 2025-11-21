@@ -31,7 +31,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="bg-[#141414] text-white mb-20 py-10 px-4 md:px-8 md:max-w-[78%] ml-auto">
+    <footer className="bg-[#141414] text-white mb-20 py-10 px-4 sm:px-14 md:px-8 md:max-w-[78%] ml-auto">
       <div className="max-w-4xl ml-auto">
         {/* Top Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">

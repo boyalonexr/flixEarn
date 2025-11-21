@@ -11,29 +11,33 @@ const VideoCard = ({ imgSrc, title, rating, genre, cryptoIcon, rate, isNew, onCl
   return (
     <div className="max-w-full sm:w-40 flex flex-col cursor-pointer" onClick={onClick}>
       {/* Poster container */}
-      <div className="relative h-60 w-full rounded-xl overflow-hidden group">
+      <div className="relative h-60 w-full rounded-xl overflow-hidden">
         <img
           src={imgSrc}
           alt={title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
 
-        {/* Overlay when active */}
-        {isActive && (
+        {/* Overlay  */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 flex items-center justify-center o"
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20 rounded-lg" />
-            <div className="relative z-10 flex justify-center items-center w-16 h-16 rounded-full bg-white/50 backdrop-blur-sm">
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isActive ? 1 : 0 }}
+          whileHover={{ opacity: 1 }}           
+          transition={{ duration: 0.3, ease: "easeIn" }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          {/* Gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20 rounded-lg" />
+
+           {/* Play button */}
+           <div className='relative group z-10'>
+            <div className="flex justify-center items-center w-16 h-16 rounded-full bg-white/30 group-hover:bg-red-600/20 backdrop-blur-sm">
               <div className="bg-black w-12 h-12 rounded-full flex justify-center items-center">
-                <IoPlayOutline className="text-white text-3xl drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]" />
+                <IoPlayOutline className="text-white/50 group-hover:text-red-500 text-3xl" />
               </div>
             </div>
-          </motion.div>
-        )}
+           </div>
+        </motion.div>
 
         {/* Rating & Bookmark */}
         <div className="absolute top-2 left-0 w-full text-white px-2">
@@ -107,7 +111,7 @@ function MovieSearch({ toggleActive }) {
         viewport={{ once: true }}
         className="
           fixed border top-20 z-20 inset-0 -translate-x-1/2 border-t border-[#242323]
-          bg-[#141414] text-white p-4 font-reddit md:rounded-xl shadow-lg
+          bg-[#141414] text-white p-4 sm:px-14 md:px-8' font-reddit md:rounded-xl shadow-lg
           max-w-[100%] mx-auto md:w-[90%] lg:w-[85%] overflow-hidden max-h-[80vh]
         "
       >

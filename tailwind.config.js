@@ -10,6 +10,7 @@ export default {
     extend: {
        screens: {
         sm: '500px',
+        "ch": '600px',
         'x12': '1200px', 
       },
        fontFamily: {
