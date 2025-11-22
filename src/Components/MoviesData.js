@@ -14,6 +14,17 @@ import usdc from "../assets/currencies/usdc.svg";
 import doge from '../assets/currencies/doge.svg'
 import xrp from "../assets/currencies/xrp.svg";
 
+// Partner Images
+import logo1 from "../assets/partners/logo1.svg";
+import logo2 from "../assets/partners/logo2.svg";
+import logo3 from "../assets/partners/logo3.svg";
+import logo4 from "../assets/partners/logo4.svg";
+import logo5 from "../assets/partners/logo5.svg";
+import logo6 from "../assets/partners/logo6.svg";
+import logo7 from "../assets/partners/logo7.svg";
+import logo8 from "../assets/partners/logo8.svg";
+
+
 
 export const balanceOptions = [
   { icon: flix, name: "FXC", amount: 308.6556473 },
@@ -162,4 +173,48 @@ export const moviesData = [
     isNew: true
   },
 ];
+
+export const images = [
+  {
+    id: 1,
+    src: logo1,
+    alt: "Partner Logo 1",
+  },
+  {
+    id: 2,
+    src: logo2,
+    alt: "Partner Logo 2",
+  },
+  {
+    id: 3,
+    src: logo3,
+    alt: "Partner Logo 3",
+  },
+  {
+    id: 4,
+    src: logo4,
+    alt: "Partner Logo 4",
+  },
+  {
+    id: 5,
+    src: logo5,
+    alt: "Partner Logo 5",
+  },
+  {
+    id: 6,
+    src: logo6,
+    alt: "Partner Logo 6",
+  },
+  {
+    id: 7,
+    src: logo7,
+    alt: "Partner Logo 7",
+  },
+  {
+    id: 8,
+    src: logo8,
+    alt: "Partner Logo 8",
+  },
+];
+
 
