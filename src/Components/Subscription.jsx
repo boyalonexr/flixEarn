@@ -52,14 +52,12 @@ export default function Subscription() {
   return (
     <div
       className="
-        w-full bg-[#141414]
-        px-4 md:px-8
-        x12:max-w-[78%]
-        ml-auto mb-10
+        bg-[#141414]
+        max-w-full sm:min-w-full px-4 md:px-8 
         flex items-start justify-center
       "
     >
-      <div className="w-full">
+      <div className="w-full max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto">
         <h2 className="text-3xl my-4 text-white font-reddit2 font-medium">
           Open Access
         </h2>

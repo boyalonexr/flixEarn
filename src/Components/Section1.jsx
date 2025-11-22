@@ -96,179 +96,177 @@ function Section1() {
   return (
     <div 
     className=" bg-[#141414] text-white
-      py-10 px-4 md:px-8
-      w-full ml-auto
-      x12:max-w-[78%]
-      mt-6">
+      max-w-full sm:min-w-full px-4 md:px-8">
       {/* Section: Early Access */}
-      <div className=" relative flex items-center justify-between">
-        <h2 className="text-3xl font-reddit2 font-medium">
-          Early Access
-        </h2>
-        <div className="flex items-center gap-3">
-          <button
-            className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
-          >
-            <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
-          </button>
-          <button 
-            onClick={prevEarly}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
-              <IoIosArrowBack />
-          </button>
-          <button 
-            onClick={nextEarly}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
-           <IoIosArrowForward />
-          </button>
+      <div className='w-full max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto'>
+        <div className=" relative flex items-center justify-between">
+          <h2 className="text-3xl font-reddit2 font-medium">
+            Early Access
+          </h2>
+          <div className="flex items-center gap-3">
+            <button
+              className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
+            >
+              <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
+            </button>
+            <button 
+              onClick={prevEarly}
+              className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+                <IoIosArrowBack />
+            </button>
+            <button 
+              onClick={nextEarly}
+              className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+            <IoIosArrowForward />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Early Access Movies Grid */}
-      <div 
-        ref={scrollRefEarly}
-        className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
-      >
-        <div className="flex gap-4 py-4">
-          {earlyMovies.map((movie) => (
-            <div key={movie.id} className="snap-start">
-              <VideoCard
-                {...movie}
-                isActive={activeCard === movie.id}
-                onClick={() => setActiveCard(movie.id)}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Section Cards */}
-      <div className="grid grid-cols-1 mt-12 md:grid-cols-2 gap-6">
-        {sectionData.map((section, i) => (
-          <div
-            key={i}
-            onClick={() => setActiveSection(section.key)}
-            className={`
-              relative p-4 lg:p-6 group cursor-pointer border-4 rounded-2xl w-full max-w-lg mx-auto overflow-visible
-              transition-transform duration-300 ease-out
-              ${activeSection === section.key ? 'scale-105 shadow-2xl' : 'hover:scale-[1.02] hover:shadow-lg'}
-            `}
-            style={{ borderColor: section.backgroundColor }}
-          >
-            <div className="relative z-10 flex flex-col gap-4">
-              <div className="flex items-center gap-4">
-                {/* Icon */}
-                <div
-                  className="p-2 rounded-lg"
-                  style={{ backgroundColor: section.backgroundColor }}
-                >
-                  {section.icon}
-                </div>
-
-                {/* Title */}
-                <h2 className="text-xl font-medium">{section.name}</h2>
-
-                {/* Arrow Animation */}
-               <FiArrowUpRight
-                  size={24}
-                  className={`ml-auto text-[#898e95]
-                    transition-transform duration-500 ease-in-out
-                    group-hover:-translate-y-3 group-hover:translate-x-2
-                    ${colorMap[section.key]}
-                  `}
+        {/* Early Access Movies Grid */}
+        <div 
+          ref={scrollRefEarly}
+          className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
+        >
+          <div className="flex w-[48%] md:w-[23%] lg:w-[18.6%] gap-4 py-4">
+            {earlyMovies.map((movie) => (
+              <div key={movie.id} className="snap-start w-full flex-shrink-0">
+                <VideoCard
+                  {...movie}
+                  isActive={activeCard === movie.id}
+                  onClick={() => setActiveCard(movie.id)}
                 />
               </div>
-
-              <p className="text-[16px] pt-4 text-[#898e95] sm:py-2">
-                {section.desc}
-              </p>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      {/* Section: Actual */}
-       <div className="flex mt-12 items-center justify-between">
-        <h2 className="text-3xl font-reddit2 font-medium">
-          Actual
-        </h2>
-        <div className="flex items-center gap-3">
-          <button
-            className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
-          >
-            <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
-          </button>
-          <button 
-            onClick={prevActual}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
-              <IoIosArrowBack />
-          </button>
-          <button 
-            onClick={nextActual}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
-           <IoIosArrowForward />
-          </button>
         </div>
-      </div>
 
-      {/* Actual Movies Grid */}
-      <div 
-        ref={scrollRefActual}
-        className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
-      >
-        <div className="flex gap-4 py-4">
-          {actualMovies.map((movie) => (
-            <div key={movie.id} className="snap-start">
-              <VideoCard
-                {...movie}
-                isActive={activeCard === movie.id}
-                onClick={() => setActiveCard(movie.id)}
-              />
+        {/* Section Cards */}
+        <div className="grid grid-cols-1 mt-12 md:grid-cols-2 gap-6">
+          {sectionData.map((section, i) => (
+            <div
+              key={i}
+              onClick={() => setActiveSection(section.key)}
+              className={`
+                relative p-4 lg:p-6 group cursor-pointer border-4 rounded-2xl w-full max-w-lg mx-auto overflow-visible
+                transition-transform duration-300 ease-out
+                ${activeSection === section.key ? 'scale-105 shadow-2xl' : 'hover:scale-[1.02] hover:shadow-lg'}
+              `}
+              style={{ borderColor: section.backgroundColor }}
+            >
+              <div className="relative z-10 flex flex-col gap-4">
+                <div className="flex items-center gap-4">
+                  {/* Icon */}
+                  <div
+                    className="p-2 rounded-lg"
+                    style={{ backgroundColor: section.backgroundColor }}
+                  >
+                    {section.icon}
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-xl font-medium">{section.name}</h2>
+
+                  {/* Arrow Animation */}
+                <FiArrowUpRight
+                    size={24}
+                    className={`ml-auto text-[#898e95]
+                      transition-transform duration-500 ease-in-out
+                      group-hover:-translate-y-3 group-hover:translate-x-2
+                      ${colorMap[section.key]}
+                    `}
+                  />
+                </div>
+
+                <p className="text-[16px] pt-4 text-[#898e95] sm:py-2">
+                  {section.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Section: Profitable Farming */}
-
-       <div className="flex mt-12 items-center justify-between">
-        <h2 className="text-3xl font-reddit2 font-medium">
-          Profitable Farming
-        </h2>
-        <div className="flex items-center gap-3">
-          <button
-            className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
-          >
-            <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
-          </button>
-          <button 
-            onClick={prevFarm}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
-              <IoIosArrowBack />
-          </button>
-          <button 
-            onClick={nextFarm}
-            className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
-           <IoIosArrowForward />
-          </button>
+        {/* Section: Actual */}
+        <div className="flex mt-12 items-center justify-between">
+          <h2 className="text-3xl font-reddit2 font-medium">
+            Actual
+          </h2>
+          <div className="flex items-center gap-3">
+            <button
+              className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
+            >
+              <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
+            </button>
+            <button 
+              onClick={prevActual}
+              className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+                <IoIosArrowBack />
+            </button>
+            <button 
+              onClick={nextActual}
+              className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+            <IoIosArrowForward />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Profitable Farming Movies Grid */}
-      <div 
-        ref={scrollRefFarm}
-        className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
-      >
-        <div className="flex gap-4 py-4">
-          {farmingMovies.map((movie) => (
-            <div key={movie.id} className="snap-start">
-              <VideoCard
-                {...movie}
-                isActive={activeCard === movie.id}
-                onClick={() => setActiveCard(movie.id)}
-              />
-            </div>
-          ))}
+        {/* Actual Movies Grid */}
+         <div 
+          ref={scrollRefActual}
+          className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
+        >
+          <div className="flex w-[48%] md:w-[23%] lg:w-[18.6%] gap-4 py-4">
+            {actualMovies.map((movie) => (
+              <div key={movie.id} className="snap-start w-full flex-shrink-0">
+                <VideoCard
+                  {...movie}
+                  isActive={activeCard === movie.id}
+                  onClick={() => setActiveCard(movie.id)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Section: Profitable Farming */}
+
+        <div className="flex mt-12 items-center justify-between">
+          <h2 className="text-3xl font-reddit2 font-medium">
+            Profitable Farming
+          </h2>
+          <div className="flex items-center gap-3">
+            <button
+              className="hidden md:block py-2 px-4 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500 duration-500"
+            >
+              <p className='text-xs font-semibold font-reddit2'>VIEW ALL</p>
+            </button>
+            <button 
+              onClick={prevFarm}
+              className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+                <IoIosArrowBack />
+            </button>
+            <button 
+              onClick={nextFarm}
+              className="p-2 bg-[#1E1F21] rounded-full hover:bg-[#2A2B2D] hover:text-red-500  transition duration-500">
+            <IoIosArrowForward />
+            </button>
+          </div>
+        </div>
+
+        {/* Profitable Farming Movies Grid */}
+        <div 
+          ref={scrollRefFarm}
+          className="overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth"
+        >
+          <div className="flex w-[48%] md:w-[23%] lg:w-[18.6%] gap-4 py-4">
+            {farmingMovies.map((movie) => (
+              <div key={movie.id} className="w-full flex-shrink-0 snap-start">
+                <VideoCard
+                  {...movie}
+                  isActive={activeCard === movie.id}
+                  onClick={() => setActiveCard(movie.id)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

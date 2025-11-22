@@ -1,8 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import icon from '../assets/currencies/flixcoin.svg';
 import flix from '../assets/currencies/flixcoin.svg'
 import btc from '../assets/currencies/btc.svg'
 import usdt from '../assets/currencies/usdt.svg'
+import Section1 from "./Section1";
+import Subscription from './Subscription'
+import Partners from "./Partners";
+import Footer from './Footer'
 
 import { FaRegBookmark } from "react-icons/fa6";
 
@@ -65,12 +68,13 @@ function Hero() {
 
 
   return (
+    <>
     <main className="relative mt-20 x12:max-w-[78%] w-full ml-auto select-none">
 
       {/* Scroll Snap Wrapper */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar h-[32rem] lg:h-[35rem]"
+        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar h-[33rem] md:h-[30rem] lg:h-[38rem]"
       >
         {heroSlides.map((slide, i) => (
           <div
@@ -167,8 +171,17 @@ function Hero() {
           />
         ))}
       </div>
+    <div>   
+  </div>
+</main>
 
-    </main>
+  <section className="my-10 mb-20 space-y-10 x12:max-w-[78%] w-full ml-auto ">
+    <Section1 />
+    <Subscription />
+    <Partners />
+    <Footer />
+  </section>
+    </>
   );
 }
 
