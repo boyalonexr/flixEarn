@@ -24,7 +24,7 @@ export default function MovieDetails() {
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
 
         {/* Content */}
-        <div className="relative flex flex-col justify-center gap-3 w-full max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto">
+        <div className="relative flex flex-col justify-center gap-3 w-full max-w-lg md:max-w-3xl lg:max-w-3xl x12:max-w-7xl mx-auto">
 
           <div className="flex text-white items-center gap-3">
             <h1 className="text-4xl font-medium">{movie.title}</h1>
