@@ -29,7 +29,7 @@ function App() {
      <Routes>
         <Route path="/home" element={<Hero />} />
         <Route path="/movie/:key" element={<MovieDetails />} />
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
      </Routes>
 
      <MobileNavBar 

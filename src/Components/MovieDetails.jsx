@@ -93,7 +93,7 @@ export default function MovieDetails() {
               src={videoSrc}
               poster={movieImg}
               controls
-              className="w-full border border-[#242323] h-60 md:h-96 rounded-xl object-cover my-4 mb-10"
+              className="w-full h-60 md:h-96 rounded-xl object-cover my-4 mb-10"
             />
         </div>
     </div>
