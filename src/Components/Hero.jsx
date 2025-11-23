@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import flix from '../assets/currencies/flixcoin.svg'
 import btc from '../assets/currencies/btc.svg'
 import usdt from '../assets/currencies/usdt.svg'
-import Section1 from "./Section1";
+import Movies from "./Movies";
 import Subscription from './Subscription'
 import Partners from "./Partners";
 import Footer from './Footer'
@@ -176,7 +176,7 @@ function Hero() {
 </main>
 
   <section className="my-10 mb-20 space-y-10 x12:max-w-[78%] w-full ml-auto ">
-    <Section1 />
+    <Movies />
     <Subscription />
     <Partners />
     <Footer />

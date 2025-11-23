@@ -6,13 +6,15 @@ import { HiOutlineTrophy } from "react-icons/hi2";
 import { TbChartBubble } from "react-icons/tb";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
 import { moviesData } from './MoviesData';
 
-function Section1() {
+function Movies() {
   const sectionData = [
     { key: "affiliate", 
       name: "Affiliate", 
       color: "text-green-500",
+      border: "#15803d",
       backgroundColor: "#1aaa671f",
       desc: (
         <>
@@ -26,6 +28,7 @@ function Section1() {
     { key: "token",
       name: "Token", 
       color: "text-red-500",
+      border: "#b91c1c",
       backgroundColor: "#ce2b2b1f",
       desc: (
         <>
@@ -37,6 +40,7 @@ function Section1() {
     { key: "invest", 
       name: "Invest", 
       color: "text-blue-500",
+      border: "#1d4ed8",
       backgroundColor: "#1662ff1f",
       desc: (
         <>
@@ -48,6 +52,7 @@ function Section1() {
     { key: "weekly race", 
       name: "Weekly Race", 
       color: "text-purple-500",
+      border: "#7e22ce",
       backgroundColor: "#ac29c21f",
       desc: (
         <>
@@ -129,13 +134,16 @@ function Section1() {
         >
           <div className="flex w-[48%] md:w-[23%] lg:w-[18.6%] gap-4 py-4">
             {earlyMovies.map((movie) => (
-              <div key={movie.id} className="snap-start w-full flex-shrink-0">
+              <Link 
+                key={movie.id} 
+                to={`/movie/${movie.key}`}
+                className="snap-start w-full flex-shrink-0">
                 <VideoCard
                   {...movie}
                   isActive={activeCard === movie.id}
                   onClick={() => setActiveCard(movie.id)}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -151,7 +159,11 @@ function Section1() {
                 transition-transform duration-300 ease-out
                 ${activeSection === section.key ? 'scale-105 shadow-2xl' : 'hover:scale-[1.02] hover:shadow-lg'}
               `}
-              style={{ borderColor: section.backgroundColor }}
+              style={
+                  activeSection === section.key
+                  ? { borderColor: section.border }
+                  : { borderColor: section.backgroundColor }
+                }
             >
               <div className="relative z-10 flex flex-col gap-4">
                 <div className="flex items-center gap-4">
@@ -216,13 +228,16 @@ function Section1() {
         >
           <div className="flex w-[48%] md:w-[23%] lg:w-[18.6%] gap-4 py-4">
             {actualMovies.map((movie) => (
-              <div key={movie.id} className="snap-start w-full flex-shrink-0">
+              <Link 
+                key={movie.id}
+                to={`/movie/${movie.key}`}
+                className="snap-start w-full flex-shrink-0">
                 <VideoCard
                   {...movie}
                   isActive={activeCard === movie.id}
                   onClick={() => setActiveCard(movie.id)}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -258,13 +273,16 @@ function Section1() {
         >
           <div className="flex w-[48%] md:w-[23%] lg:w-[18.6%] gap-4 py-4">
             {farmingMovies.map((movie) => (
-              <div key={movie.id} className="w-full flex-shrink-0 snap-start">
+              <Link 
+                key={movie.id}
+                to={`/movie/${movie.key}`} 
+                className="w-full flex-shrink-0 snap-start">
                 <VideoCard
                   {...movie}
                   isActive={activeCard === movie.id}
                   onClick={() => setActiveCard(movie.id)}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -274,4 +292,4 @@ function Section1() {
   );
 }
 
-export default Section1;
+export default Movies;

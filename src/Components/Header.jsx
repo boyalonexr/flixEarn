@@ -14,6 +14,7 @@ import { IoMdSearch } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 import { balanceOptions } from "./MoviesData";
 import { notification } from "./MoviesData";
+import { Link } from "react-router-dom"
 import Wallet from './Wallet'
 
 function Header({toggleActivePopup, active}) {
@@ -35,8 +36,10 @@ function Header({toggleActivePopup, active}) {
       <div className="flex max-w-lg md:max-w-3xl lg:max-w-4xl x12:max-w-7xl mx-auto justify-between items-center">
         <div className="flex items-center w-full">
           <div className="w-[30%] cursor-pointer h-20 flex justify-start x12:border-r border-[#242323] items-center ">
-            <h1 className='text-white text-3xl font-bold font-reddit'>Flix
-              <span className='text-red-500'>Earn</span></h1>
+            <Link 
+              to={`/home`}
+              className='text-white text-3xl font-bold font-reddit'>Flix
+              <span className='text-red-500'>Earn</span></Link>
           </div>
 
           <div 
